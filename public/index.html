@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>vue-mobile-qq</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but vue-mobile-qq doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+</head>
+<body>
+<div id="app"></div>
+<script>
+    var width = document.documentElement.clientWidth || document.body.clientWidth;
+    width > 750 && (width = 440);
+    document.getElementsByTagName('html')[0].style.fontSize = width / 4.14 + 'px';
+</script>
+<!-- built files will be auto injected -->
+</body>
 </html>
