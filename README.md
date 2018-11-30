@@ -1,4 +1,4 @@
-# vue-mobile-qq
+# vue2-mobile-qq
 
 ## Project setup
 ```
