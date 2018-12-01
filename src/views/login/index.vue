@@ -14,6 +14,7 @@
 
 <script>
     import { Toast } from 'mint-ui';
+    import { Indicator } from 'mint-ui';
     export default {
         name: "login",
         methods: {
@@ -21,15 +22,31 @@
                 if(!this.qq.trim()){
                     Toast('请输入QQ号');
                 }else if(!this.pwd.trim()){
-                    Toast('请输入密码')
+                    Toast('请输入密码');
+                }else{
+                    Indicator.open('登录中...');
+                    // 定时器模拟异步请求
+                    setTimeout(()=>{
+                        Indicator.close();
+                        Toast({
+                            message: '登录成功',
+                            position: 'center',
+                            duration: 1000
+                        });
+                    },30)
+
+                    this.$router.push('/message/1')
                 }
             }
         },
         data() {
             return {
-                qq: '',
-                pwd: ''
+                qq: '111111',
+                pwd: '123456'
             }
+        },
+        mounted(){
+            this.$store.commit('SHOW_FOOT_CHANGE',false);
         }
     }
 </script>

@@ -1,12 +1,12 @@
-const app={
-    state:{
-
+const app = {
+    state: {
+        showFoot: false
     },
-    mutations:{
-
+    mutations: {
+        SHOW_FOOT_CHANGE(state, bool) {
+            state.showFoot = bool;
+        }
     },
-    actions:{
-
-    }
+    actions: {}
 }
 export default app

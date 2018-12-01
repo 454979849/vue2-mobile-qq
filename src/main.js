@@ -9,7 +9,9 @@ import 'mint-ui/lib/style.css';
 import vueg from 'vueg'
 import 'vueg/css/transition-min.css'
 import '@/utils/hide-address'
-import '@/common/base.scss'
+import '@/common/index.scss'
+// import { Lazyload } from 'mint-ui';
+// Vue.use(Lazyload);
 Vue.use(Vuex)
 // vueg 转场动画
 const options = {

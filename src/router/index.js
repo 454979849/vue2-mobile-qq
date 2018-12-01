@@ -11,6 +11,7 @@ export default new Router({
         {path: '/welcome', component: () => import('@/views/welcome/index')},
         {path: '/login', component: () => import('@/views/login/index')},
         {path: '/register', component: () => import('@/views/register/index')},
-        {path: '*', redirect: '/404'}
+        {path: '/message/:userId', component: () => import('@/views/message/index')},
+        {path: '/friend/:userId', component: () => import('@/views/friend/index')},
     ]
 })

@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "better-scroll": "^1.13.2",
     "fastclick": "^1.0.6",
     "mint-ui": "^2.2.13",
     "register-service-worker": "^1.5.2",

@@ -9,7 +9,10 @@
 
 <script>
     export default {
-        name: "welcome"
+        name: "welcome",
+        mounted(){
+            this.$store.commit('SHOW_FOOT_CHANGE',false);
+        }
     }
 </script>
 
@@ -27,8 +30,8 @@
             display: flex;
             button{
                 text-align:center;
-                flex: 1;
-                margin: .06rem;
+                flex:1;
+                margin:.06rem;
                 line-height: .32rem;
                 color: white;
                 font-size: .16rem;

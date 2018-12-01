@@ -1,0 +1,198 @@
+<template>
+        <mt-loadmore  class="messageListWrapper" id="container" :top-method="loadTop"  ref="loadmore">
+            <ul class="messageList">
+                <li v-for="(item,index) in messageList">
+                    <div class="imgBox left">
+                        <img v-lazy.container="item.imgSrc" alt="">
+                    </div>
+                    <div class="detail right">
+                        <span>{{item.nickName}}</span>
+                        <p>{{item.lastSay}}</p>
+                    </div>
+                </li>
+            </ul>
+        </mt-loadmore>
+</template>
+
+<script>
+    import Vue from 'vue'
+    import {Lazyload,Loadmore,Toast} from 'mint-ui';
+    Vue.use(Lazyload);
+    Vue.component(Loadmore.name, Loadmore);
+
+    export default {
+        name: "messageList",
+        methods: {
+            loadTop() {
+                //定时器模拟异步请求效果
+                setTimeout(()=>{
+                    Toast({
+                        message: '更新成功',
+                        position: 'center',
+                        duration: 1000
+                    });
+                    this.$refs.loadmore.onTopLoaded();
+
+                },1000)
+            }
+        },
+        mounted() {
+
+        },
+        data() {
+            return {
+                popupVisible:true,
+                messageList: [{
+                    imgSrc: require('../assets/headimgs/2.jpg'),
+                    nickName: '武汉慧擎科技',
+                    lastSay: '210数据库已扩容完成，可以使用了'
+                }, {
+                    imgSrc: require('../assets/headimgs/3.jpg'),
+                    nickName: '狗子',
+                    lastSay: '请你吃鸡蛋'
+                }, {
+                    imgSrc: require('../assets/headimgs/4.jpg'),
+                    nickName: '猫子',
+                    lastSay: '我先把你拉进群里，12月10日左右对接'
+                }, {
+                    imgSrc: require('../assets/headimgs/5.jpg'),
+                    nickName: '兔子',
+                    lastSay: '你个傻逼玩手游？'
+                }, {
+                    imgSrc: require('../assets/headimgs/6.jpg'),
+                    nickName: '鸡子',
+                    lastSay: '嗯'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/7.jpg'),
+                    nickName: '鸭子',
+                    lastSay: '然后其他时间  把服务器玩熟了'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/8.jpg'),
+                    nickName: '败子',
+                    lastSay: '宝安智创高地'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/9.jpg'),
+                    nickName: '傻子',
+                    lastSay: '估计有人下小电影'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/10.jpg'),
+                    nickName: '哈子',
+                    lastSay: '缩写'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/11.jpg'),
+                    nickName: '猪子',
+                    lastSay: '有一栋大厦是的'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/12.jpg'),
+                    nickName: '牛子',
+                    lastSay: '现在过来'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/13.jpg'),
+                    nickName: '羊子',
+                    lastSay: '这个页面里的格子  可以拖拽排序'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/14.jpg'),
+                    nickName: '狮子',
+                    lastSay: '额，找到一个有效的了'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/15.jpg'),
+                    nickName: '虎子',
+                    lastSay: '是啊 估计又发不了'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/16.jpg'),
+                    nickName: '狼子',
+                    lastSay: '嗯嗯嗯嗯，老婆最重要，理解理解'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/17.jpg'),
+                    nickName: '鸟子',
+                    lastSay: '好'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/18.jpg'),
+                    nickName: '蛇子',
+                    lastSay: '这是网关地址 都用这个就行了'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/19.jpg'),
+                    nickName: '疯子',
+                    lastSay: '我搞的那个融合框架 有大漏洞'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/20.jpg'),
+                    nickName: '野子',
+                    lastSay: '帮我看个问题'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/21.jpg'),
+                    nickName: '鸽子',
+                    lastSay: '是的'
+
+                }, {
+                    imgSrc: require('../assets/headimgs/22.jpg'),
+                    nickName: '豹子',
+                    lastSay: '我也是有底线的'
+                }]
+            }
+        }
+    }
+</script>
+
+<style scoped lang="scss">
+    @import '../common/mixin';
+
+    .messageListWrapper {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: .6rem;
+        bottom: .54rem;
+        ul.messageList {
+            width: 100%;
+            li {
+                height: .64rem;
+                &:first-child {
+                    background-color: #f0f1f3;
+                }
+                .imgBox {
+                    width: 18%;
+                    height: 100%;
+                    @include flex-center();
+                    img {
+                        height: .4rem;
+                        border-radius: 50%;
+                    }
+                }
+                .detail {
+                    width: 82%;
+                    height: 100%;
+                    border-bottom: .01rem solid #eee;
+                    display: flex;
+                    flex-direction: column;
+                    padding-top: .1rem;
+                    padding-bottom: .12rem;
+                    justify-content: space-around;
+                    span {
+                        font-size: .16rem;
+                    }
+                    p {
+                        color: #666;
+                        font-size: .13rem;
+                    }
+                }
+            }
+        }
+    }
+</style>
