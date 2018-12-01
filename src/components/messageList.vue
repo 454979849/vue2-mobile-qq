@@ -1,22 +1,23 @@
 <template>
-        <mt-loadmore  class="messageListWrapper" id="container" :top-method="loadTop"  ref="loadmore">
-            <ul class="messageList">
-                <li v-for="(item,index) in messageList">
-                    <div class="imgBox left">
-                        <img v-lazy.container="item.imgSrc" alt="">
-                    </div>
-                    <div class="detail right">
-                        <span>{{item.nickName}}</span>
-                        <p>{{item.lastSay}}</p>
-                    </div>
-                </li>
-            </ul>
-        </mt-loadmore>
+    <mt-loadmore class="messageListWrapper" id="container" :top-method="loadTop" ref="loadmore">
+        <ul class="messageList">
+            <li v-for="(item,index) in messageList">
+                <div class="imgBox left">
+                    <img v-lazy.container="item.imgSrc" alt="">
+                </div>
+                <div class="detail right">
+                    <span>{{item.nickName}}</span>
+                    <p>{{item.lastSay}}</p>
+                </div>
+            </li>
+        </ul>
+    </mt-loadmore>
 </template>
 
 <script>
     import Vue from 'vue'
-    import {Lazyload,Loadmore,Toast} from 'mint-ui';
+    import {Lazyload, Loadmore, Toast} from 'mint-ui';
+
     Vue.use(Lazyload);
     Vue.component(Loadmore.name, Loadmore);
 
@@ -25,15 +26,14 @@
         methods: {
             loadTop() {
                 //定时器模拟异步请求效果
-                setTimeout(()=>{
+                setTimeout(() => {
                     Toast({
                         message: '更新成功',
                         position: 'center',
                         duration: 1000
                     });
                     this.$refs.loadmore.onTopLoaded();
-
-                },1000)
+                }, 1000)
             }
         },
         mounted() {
@@ -41,7 +41,7 @@
         },
         data() {
             return {
-                popupVisible:true,
+                popupVisible: true,
                 messageList: [{
                     imgSrc: require('../assets/headimgs/2.jpg'),
                     nickName: '武汉慧擎科技',

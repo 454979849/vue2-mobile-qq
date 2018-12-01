@@ -2,16 +2,16 @@
     <div class="foot">
         <ul>
             <li @click="pageChange(0)">
-                <img :src="index==0?imgActive1:img1" >
-                <p :class="{active:index==0}">消息</p>
+                <img :src="footIndex==0?imgActive1:img1" >
+                <p :class="{active:footIndex==0}">消息</p>
             </li>
             <li @click="pageChange(1)">
-                <img :src="index==1?imgActive2:img2" >
-                <p :class="{active:index==1}">联系人</p>
+                <img :src="footIndex==1?imgActive2:img2" >
+                <p :class="{active:footIndex==1}">联系人</p>
             </li>
             <li @click="pageChange(2)">
-                <img :src="index==2?imgActive3:img3" >
-                <p :class="{active:index==2}">动态</p>
+                <img :src="footIndex==2?imgActive3:img3" >
+                <p :class="{active:footIndex==2}">动态</p>
             </li>
         </ul>
     </div>
@@ -22,21 +22,22 @@
     export default {
         name: "foot",
         computed:{
-            ...mapGetters(['userId'])
+            ...mapGetters(['userId','footIndex'])
         },
         methods:{
             pageChange(index){
-                if(index==this.index){
+                if(index==this.footIndex){
                     return ;
                 }
-                this.index=index;
+                sessionStorage.setItem('footIndex',index);
+                this.$store.commit('SET_FOOT_INDEX',index);
                 if(index==0) this.$router.push(`/message/${this.userId}`)
                 else if(index==1) this.$router.push(`/friend/${this.userId}`)
+                else if(index==2) this.$router.push(`/dynamic/${this.userId}`)
             }
         },
         data(){
             return {
-                index:0,
                 img1:require('../assets/f1.png'),
                 imgActive1:require('../assets/f1_active.png'),
                 img2:require('../assets/f2.png'),

@@ -13,5 +13,6 @@ export default new Router({
         {path: '/register', component: () => import('@/views/register/index')},
         {path: '/message/:userId', component: () => import('@/views/message/index')},
         {path: '/friend/:userId', component: () => import('@/views/friend/index')},
+        {path: '/dynamic/:userId', component: () => import('@/views/dynamic/index')},
     ]
 })
