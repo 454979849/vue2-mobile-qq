@@ -1,6 +1,8 @@
 <template>
     <div id="app">
-        <router-view v-transition />
+        <keep-alive>
+            <router-view v-transition />
+        </keep-alive>
         <Foot v-if="showFoot"></Foot>
     </div>
 </template>

@@ -10,21 +10,18 @@ import vueg from 'vueg'
 import 'vueg/css/transition-min.css'
 import '@/utils/hide-address'
 import '@/common/index.scss'
-// import { Lazyload } from 'mint-ui';
-// Vue.use(Lazyload);
-Vue.use(Vuex)
 // vueg 转场动画
 const options = {
     forwardAnim: 'fadeInRight',
     duration:0.2
 }
-Vue.use(vueg, router, options)
+Vue.use(Vuex).use(Mint).use(vueg, router, options);
+
 if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function() {
         FastClick.attach(document.body);
     }, false);
 }
-Vue.use(Mint);
 
 Vue.config.productionTip = false
 

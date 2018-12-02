@@ -51,6 +51,7 @@
 
 <style scoped lang="scss">
     .foot {
+        background:#fff;
         z-index:500;
         height: .54rem;
         position: absolute;
