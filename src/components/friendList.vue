@@ -1,55 +1,83 @@
 <template>
-    <ul class="friendList">
-        <li v-for="(item,index) in subList">
-            <div class="imgBox left">
-                <img v-lazy.container="item.imgSrc" alt="">
+    <div class="friendList">
+        <div class="groupItem" v-for="(item,index) in friendList">
+            <div class="groupName" @click="openGroup(index)">
+                <div class="l">
+                    <p class="iconBox">
+                        <i class="fa fa-angle-right" :class="{active:selectedGroupIndex==index}"></i>
+                    </p>
+                    <span>{{item.groupName}}</span>
+                </div>
+                <div class="r">
+                    <span>{{item.subList.length}}</span>/<span>{{item.subList.length}}</span>
+                </div>
             </div>
-            <div class="detail right">
-                <span>{{item.nickName}}</span>
-                <p>{{item.autograph}}</p>
-            </div>
-        </li>
-    </ul>
+            <FriendSubList v-show="selectedGroupIndex==index" :subList="item.subList"></FriendSubList>
+        </div>
+    </div>
 </template>
 
 <script>
+    import FriendSubList from './friendSubList'
     export default {
         name: "friendList",
-        props: ['subList','openIndex']
+        components:{FriendSubList},
+        props:['friendList'],
+        data(){
+            return {
+                selectedGroupIndex: 1
+            }
+        },
+        methods:{
+            openGroup(index) {
+                if (index == this.selectedGroupIndex) this.selectedGroupIndex = -1
+                else this.selectedGroupIndex = index;
+            }
+        }
     }
 </script>
 
 <style scoped lang="scss">
-    @import '../common/mixin';
-
-    .friendList {
-        li {
-            height: .6rem;
-            .imgBox {
-                width: 18%;
-                height: 100%;
-                @include flex-center();
-                img {
-                    height: .4rem;
-                    border-radius: 50%;
+    .groupItem {
+        &:last-child {
+            .friendList {
+                li:last-child {
+                    .detail {
+                        background: red;
+                        border-bottom: none !important;
+                    }
                 }
             }
-            .detail {
-                width: 82%;
-                height: 100%;
-                border-bottom: .01rem solid #eee;
+        }
+        .groupName {
+            height: .5rem;
+            display: flex;
+            align-items: center;
+            padding-left: .14rem;
+            padding-right: .14rem;
+            justify-content: space-between;
+            .l {
                 display: flex;
-                flex-direction: column;
-                padding-top: .1rem;
-                padding-bottom: .12rem;
-                justify-content: space-around;
+                align-items: center;
+                .iconBox {
+                    width: .28rem;
+                    i {
+                        color: #bbb;
+                        font-size: .26rem;
+                        &.active {
+                            transform: rotate(90deg);
+                        }
+                    }
+                }
+
                 span {
+                    color: #000;
                     font-size: .16rem;
                 }
-                p {
-                    color: #666;
-                    font-size: .13rem;
-                }
+            }
+            .r {
+                color: #888;
+                font-size: .11rem;
             }
         }
     }

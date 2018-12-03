@@ -1,9 +1,9 @@
 <template>
-    <mt-loadmore class="messageListWrapper" id="container" :top-method="loadTop" ref="loadmore">
+    <mt-loadmore class="messageListWrapper" :top-method="loadTop" ref="loadmore">
         <ul class="messageList">
             <li v-for="(item,index) in messageList">
                 <div class="imgBox left">
-                    <img v-lazy.container="item.imgSrc" alt="">
+                    <img :src="item.imgSrc" alt="">
                 </div>
                 <div class="detail right">
                     <span>{{item.nickName}}</span>
