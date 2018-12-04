@@ -1,7 +1,7 @@
 <template>
     <div class="friendPage">
 
-        <mHead pageType="friend"></mHead>
+        <mHead pageType="friend" placeholder="搜索"></mHead>
         <mt-loadmore class="friend" id="friends" :top-method="loadTop" ref="loadmore">
             <div class="info">
                 <div>
@@ -25,7 +25,7 @@
                     <GroupList></GroupList>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="tab3">
-
+                    <PublicList :publicList="publicList"></PublicList>
                 </mt-tab-container-item>
             </mt-tab-container>
 
@@ -39,6 +39,7 @@
     import mHead from '@/components/head'
     import FriendList from '@/components/friendList'
     import GroupList from '@/components/groupList'
+    import PublicList from '@/components/publicList'
 
     import {Toast, Navbar, TabItem, Loadmore} from 'mint-ui';
 
@@ -48,8 +49,8 @@
 
     export default {
         name: "friend",
-        components: {mHead,FriendList,GroupList},
-        mounted() {
+        components: {mHead,FriendList,GroupList,PublicList},
+        created() {
             this.$store.commit('SHOW_FOOT_CHANGE', true);
         },
         methods: {
@@ -184,8 +185,21 @@
                         vip: 0
                     }]
                 }],
-                groupList:[{
-
+                publicList:[{
+                    letter:'D',
+                    subList:[{
+                        imgSrc:require('../../assets/publicImgs/1.jpeg'),
+                        name:'道聚城'
+                    }]
+                },{
+                    letter:'H',
+                    subList:[{
+                        imgSrc:require('../../assets/publicImgs/2.jpeg'),
+                        name:'好友动态'
+                    },{
+                        imgSrc:require('../../assets/publicImgs/3.jpeg'),
+                        name:'黑口袋'
+                    }]
                 }]
             }
         }
@@ -224,7 +238,6 @@
         -webkit-overflow-scrolling: touch;
         .mint-tab-container-item {
             background-color: #fff;
-            padding-top: .04rem;
             margin-top: .03rem;
             margin-bottom: .5rem;
         }

@@ -3,7 +3,7 @@
         <img :src="userHead" class="userHead">
         <p class="searchBar">
             <i class="fa fa-search"></i>
-            <span>搜索</span>
+            <span>{{placeholder}}</span>
         </p>
         <div class="addBox" v-if="pageType=='message'">
             +
@@ -11,13 +11,14 @@
         <div class="addFriend" v-else-if="pageType=='friend'">
             添加
         </div>
+        <div class="fa fa-th-large" v-else-if="pageType=='dynamic'"></div>
     </div>
 </template>
 
 <script>
     export default {
         name: "mhead",
-        props:['pageType'],
+        props:['pageType','placeholder'],
         data(){
             return {
                 userHead: require('../assets/headimgs/1.jpg')
@@ -70,7 +71,11 @@
             font-size:.16rem;
             color:#fff;
             margin-left: .14rem;
-
+        }
+        .fa-th-large{
+            font-size:.22rem;
+            color:#fff;
+            margin-left: .14rem;
         }
     }
 </style>

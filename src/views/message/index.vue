@@ -1,6 +1,6 @@
 <template>
     <div class="message">
-        <mHead pageType="message"></mHead>
+        <mHead pageType="message" placeholder="搜索"></mHead>
         <MessageList :messageList="messageList"></MessageList>
     </div>
 </template>
@@ -119,7 +119,7 @@
                 }]
             }
         },
-        mounted() {
+        created() {
             this.$store.commit('SHOW_FOOT_CHANGE', true);
         }
     }
