@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <div style="width:500px;height:100%;background:red;"></div>
         <keep-alive>
             <router-view v-transition />
         </keep-alive>
