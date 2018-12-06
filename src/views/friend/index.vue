@@ -66,13 +66,15 @@
                 }, 1000)
             }
         },
+        mounted(){
+          this.$store.commit('SET_FRIEND_LIST',this.friendList);
+          console.log()
+          sessionStorage.setItem('friendList',JSON.stringify(this.friendList));
+        },
         data() {
             return {
                 selected: 'tab1',
                 friendList: [{
-                    groupName: '特别关心',
-                    subList: []
-                }, {
                     groupName: '分组一',
                     subList: [{
                         imgSrc: require('../../assets/headimgs/3.jpg'),

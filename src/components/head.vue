@@ -1,6 +1,6 @@
 <template>
     <div class="mhead">
-        <img :src="userHead" class="userHead">
+        <img :src="userHead" class="userHead" @click="showUserPanel">
         <p class="searchBar">
             <i class="fa fa-search"></i>
             <span>{{placeholder}}</span>
@@ -23,6 +23,12 @@
             return {
                 userHead: require('../assets/headimgs/1.jpg')
 
+            }
+        },
+        methods:{
+            showUserPanel(){
+                this.$store.commit('SET_USER_PANEL',true);
+                this.$store.commit('SET_MASK',true);
             }
         }
     }
