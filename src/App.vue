@@ -3,7 +3,7 @@
     <div id="app" :class="{move:showUserPanel}">
         <div id="userPanel">
             <div class="imgBox">
-                <img :src="userInfo.userBg" class="userBg">
+                <img :src="userInfo.userBg" class="userBg" ref="userBg">
                 <div class="content">
                     <div class="userName">
                         <img :src="userInfo.userHead">
@@ -95,9 +95,28 @@
                     userBg: require('./assets/user/userBg.png'),
                     userName: '龙城故事',
                     vip: 2
-                }
-
+                },
+                imgBottom:'',
+                timer:null,
+                direction:'up'
             }
+        },
+        mounted(){
+            this.timer=setInterval(()=>{
+                var bottom=parseFloat(getComputedStyle(this.$refs.userBg).bottom);
+                if(this.direction=='up'){
+                    bottom++;
+                    if(bottom==0){
+                        this.direction='down'
+                    }
+                }else{
+                    bottom--;
+                    if(bottom==-60){
+                        this.direction='up'
+                    }
+                }
+                this.$refs.userBg.style.bottom=bottom+'px'
+            },40)
         },
         methods:{
             close(){
@@ -148,7 +167,7 @@
                 }
             }
             .imgBox {
-                height: 2.6rem;
+                height: 2.4rem;
                 overflow: hidden;
                 position: relative;
                 width: 100%;
@@ -156,7 +175,7 @@
                 img.userBg {
                     width: 100%;
                     position: absolute;
-                    bottom: -0.5rem;
+                    bottom: -60px;
                     left: 0;
                     z-index: 1;
                 }

@@ -19,11 +19,13 @@ html, body {
 body{
   font-size:.16rem;
   line-height:1;
+
 }
 #app,.wrapper{
   width:100%;
   height:100%;
   position:absolute;
+
 }
 @media screen and (min-width: 750px) {
   body{
@@ -31,7 +33,7 @@ body{
     margin:0 auto;
   }
   body,#app{
-    width:440px
+    width:440px;
   }
 }
 
