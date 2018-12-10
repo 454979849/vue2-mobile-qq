@@ -56,25 +56,25 @@
                 topGroupList:[{
                     name:'聊城前端',
                     lastTime:'1543845524503',
-                    imgSrc:require('../assets/groupImgs/1.png')
+                    imgSrc:'http://120.79.192.193/assets/groupImgs/1.png'
                 }],
                 myCreateGroupList:[{
                     name:'聊城前端',
                     lastTime:'1543845524503',
-                    imgSrc:require('../assets/groupImgs/1.png')
+                    imgSrc:'http://120.79.192.193/assets/groupImgs/1.png'
                 }],
                 myJoinGroupList:[{
                     name:'时空信息云平台产品组',
                     lastTime:'1543845649689',
-                    imgSrc:require('../assets/groupImgs/2.png')
+                    imgSrc:'http://120.79.192.193/assets/groupImgs/2.png'
                 },{
                     name:'003号宝安UGIS',
                     lastTime:'1543845682950',
-                    imgSrc:require('../assets/groupImgs/3.jpg')
+                    imgSrc:'http://120.79.192.193/assets/groupImgs/3.jpg'
                 },{
                     name:'编程交流',
                     lastTime:'1543845773686',
-                    imgSrc:require('../assets/groupImgs/4.jpg')
+                    imgSrc:'http://120.79.192.193/assets/groupImgs/4.jpg'
                 }]
             }
         },

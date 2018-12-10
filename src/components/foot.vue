@@ -38,12 +38,12 @@
         },
         data(){
             return {
-                img1:require('../assets/f1.png'),
-                imgActive1:require('../assets/f1_active.png'),
-                img2:require('../assets/f2.png'),
-                imgActive2:require('../assets/f2_active.png'),
-                img3:require('../assets/f3.png'),
-                imgActive3:require('../assets/f3_active.png'),
+                img1:'http://120.79.192.193/assets/f1.png',
+                imgActive1:'http://120.79.192.193/assets/f1_active.png',
+                img2:'http://120.79.192.193/assets/f2.png',
+                imgActive2:'http://120.79.192.193/assets/f2_active.png',
+                img3:'http://120.79.192.193/assets/f3.png',
+                imgActive3:'http://120.79.192.193/assets/f3_active.png',
             }
         }
     }

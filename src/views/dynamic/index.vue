@@ -85,12 +85,12 @@
                 week:['星期天','星期一','星期二','星期三','星期四','星期五','星期六'],
                 todaySelected:[{
                     type:'附近',
-                    img:require('../../assets/dinamicImgs/01.png'),
+                    img:'http://120.79.192.193/assets/dinamicImgs/01.png',
                     title:'无辣不欢！唯有辣才能称得上美食！！',
                     subTitle:'点击火速围观',
                 },{
                     type:'兴趣部落',
-                    img:require('../../assets/dinamicImgs/02.png'),
+                    img:'http://120.79.192.193/assets/dinamicImgs/02.png',
                     title:'部唠娱|Chic Chili我们科室饭圈黑话"太太"哦~',
                     subTitle:'川妹纸小辣椒们专访上集来啦~队内团欺首曝光'
                 }]

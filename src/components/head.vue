@@ -21,7 +21,7 @@
         props:['pageType','placeholder'],
         data(){
             return {
-                userHead: require('../assets/headimgs/1.jpg')
+                userHead: 'http://120.79.192.193/assets/headImgs/1.jpg'
 
             }
         },

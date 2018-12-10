@@ -22,8 +22,8 @@
         props: ['subList','openIndex'],
         data(){
             return {
-                vipSrc:require('../assets/vip.png'),
-                svipSrc:require('../assets/svip.png')
+                vipSrc:'http://120.79.192.193/assets/vip.png',
+                svipSrc:'http://120.79.192.193/assets/svip.png'
             }
         }
     }
