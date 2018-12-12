@@ -13,29 +13,32 @@
 </template>
 
 <script>
-    import { Toast } from 'mint-ui';
-    import { Indicator } from 'mint-ui';
+    import {Toast} from 'mint-ui';
+    import {Indicator} from 'mint-ui';
+
+    import {login} from '@/api/login'
+
     export default {
         name: "login",
         methods: {
             login() {
-                if(!this.qq.trim()){
+                if (!this.qq.trim()) {
                     Toast('请输入QQ号');
-                }else if(!this.pwd.trim()){
+                } else if (!this.pwd.trim()) {
                     Toast('请输入密码');
-                }else{
+                } else {
                     Indicator.open('登录中...');
-                    // 定时器模拟异步请求
-                    setTimeout(()=>{
+                    login(this.qq, this.pwd).then(res => {
                         Indicator.close();
+                        res = res.data;
                         Toast({
-                            message: '登录成功',
+                            message: res.message,
                             position: 'center',
                             duration: 1000
-                        });
-                    },30)
+                        })
+                        this.$router.push('/message/1')
+                    })
 
-                    this.$router.push('/message/1')
                 }
             }
         },
@@ -45,8 +48,8 @@
                 pwd: '123456'
             }
         },
-        mounted(){
-            this.$store.commit('SHOW_FOOT_CHANGE',false);
+        mounted() {
+            this.$store.commit('SHOW_FOOT_CHANGE', false);
         }
     }
 </script>
