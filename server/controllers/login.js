@@ -2,7 +2,6 @@ const userModel = require("../models/userInfo");
 
 
 module.exports = async (ctx, next) => {
-    console.log(ctx.request.body);
 
     let userName = ctx.request.body.userName || '';
     let password = ctx.request.body.password || '';
