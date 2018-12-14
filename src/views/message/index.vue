@@ -1,20 +1,53 @@
 <template>
     <div class="message">
         <mHead pageType="message" placeholder="搜索"></mHead>
-        <MessageList :messageList="messageList"></MessageList>
+        <mt-loadmore class="messageListWrapper" :top-method="loadTop" ref="loadmore">
+            <ul class="messageList">
+                <li class="li" v-for="(item,index) in messageList">
+                    <div class="imgBox left">
+                        <img :src="item.imgSrc">
+                    </div>
+                    <div class="detail right">
+                        <span>{{item.nickName}}</span>
+                        <p>{{item.lastSay}}</p>
+                    </div>
+                </li>
+            </ul>
+        </mt-loadmore>
     </div>
 </template>
 
 <script>
-    import MessageList from '@/components/messageList'
+    import {addClass} from '@/utils/common'
     import mHead from '@/components/head'
-    import {Indicator, Search} from 'mint-ui';
+    import {Indicator, Search,Lazyload, Loadmore, Toast} from 'mint-ui';
+    import Vue from 'vue'
+
+    Vue.use(Lazyload);
+    Vue.component(Loadmore.name, Loadmore);
 
     export default {
         name: "message",
-        components:{MessageList,mHead},
+        components:{mHead},
+        created() {
+            this.$store.commit('SHOW_FOOT_CHANGE', true);
+        },
+        methods: {
+            loadTop() {
+                //定时器模拟异步请求效果
+                setTimeout(() => {
+                    Toast({
+                        message: '更新成功',
+                        position: 'center',
+                        duration: 1000
+                    });
+                    this.$refs.loadmore.onTopLoaded();
+                }, 1000)
+            }
+        },
         data() {
             return {
+                popupVisible: true,
                 searchWords: '',
                 messageList: [{
                     imgSrc: 'http://120.79.192.193/assets/headImgs/2.jpg',
@@ -118,16 +151,63 @@
                     lastSay: '我也是有底线的'
                 }]
             }
-        },
-        created() {
-            this.$store.commit('SHOW_FOOT_CHANGE', true);
         }
     }
 </script>
 
 <style scoped lang="scss">
+    @import '../../common/mixin';
+
+
+
     .message {
         width: 100%;
         height: 100%;
+    }
+
+
+    .messageListWrapper {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: .6rem;
+        bottom: .54rem;
+        ul.messageList {
+            width: 100%;
+            li {
+                height: .64rem;
+                &:first-child {
+                    background-color: #f0f1f3;
+                }
+                .imgBox {
+                    width: 18%;
+                    height: 100%;
+                    @include flex-center();
+                    img {
+                        height: .4rem;
+                        border-radius: 50%;
+                    }
+                }
+                .detail {
+                    width: 82%;
+                    height: 100%;
+                    border-bottom: .01rem solid #eee;
+                    display: flex;
+                    flex-direction: column;
+                    padding-top: .1rem;
+                    padding-bottom: .12rem;
+                    justify-content: space-around;
+                    span {
+                        font-size: .16rem;
+                    }
+                    p {
+                        color: #666;
+                        font-size: .13rem;
+                    }
+                }
+            }
+        }
     }
 </style>

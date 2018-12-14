@@ -1,9 +1,9 @@
 const db = {
-    host: 'localhost', // 数据库IP
+    host: '120.79.192.193', // 数据库IP
     port: 3306, // 数据库端口
     database: 'qq', // 数据库名称
-    user: 'root', // 数据库用户名
-    password: '123456', // 数据库密码
+    user: 'imooc', // 数据库用户名
+    password: 'sdfLKJ`12', // 数据库密码
 }
 const baseApi = 'api/qq'
 
