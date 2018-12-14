@@ -10,7 +10,7 @@ module.exports = async (ctx, next) => {
     const res = JSON.parse(JSON.stringify(userItemRow));
     if (res.length > 0) {
         if (password == res[0].password) {
-            ctx.response.body = {
+            ctx.body = {
                 code: 200,
                 success: true,
                 message: '登录成功',
@@ -25,14 +25,14 @@ module.exports = async (ctx, next) => {
                 }
             }
         } else {
-            ctx.response.body = {
+            ctx.body = {
                 code: 202,
                 success: false,
                 message: '密码错误'
             }
         }
     } else {
-        ctx.response.body = {
+        ctx.body = {
             code: 201,
             success: false,
             message: "用户名错误"
