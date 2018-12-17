@@ -28,7 +28,7 @@
                     Toast('请输入密码');
                 } else {
                     Indicator.open('登录中...');
-                    login(this.qq, this.pwd).then(res => {
+                    login({userName: this.qq, password: this.pwd}).then(res => {
                         Indicator.close();
                         res = res.data;
                         Toast({

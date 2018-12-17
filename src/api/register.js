@@ -1,9 +1,10 @@
 import request from '@/utils/request'
 
-export function login(obj){
+export function register(obj){
     const data={
         userName:obj.userName,
-        password:obj.password
+        password:obj.password,
+        nickName:obj.nickName
     }
     return request({
         method:'post',
