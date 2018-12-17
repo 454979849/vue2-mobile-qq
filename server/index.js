@@ -8,7 +8,7 @@ const app = new Koa();
 
 const server = require("http").createServer(app.callback());
 const io = require("socket.io")(server);
-server.listen(3389);
+server.listen(3000);
 app.use(cors());
 
 app.use(bodyParser());//获取post请求的参数的中间件
