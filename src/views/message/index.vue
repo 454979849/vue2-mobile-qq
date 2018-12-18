@@ -31,6 +31,7 @@
         components:{mHead},
         created() {
             this.$store.commit('SHOW_FOOT_CHANGE', true);
+            this.$store.commit('SET_FOOT_INDEX', 0);
         },
         methods: {
             loadTop() {

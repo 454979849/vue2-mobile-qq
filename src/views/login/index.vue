@@ -13,8 +13,7 @@
 </template>
 
 <script>
-    import {Toast} from 'mint-ui';
-    import {Indicator} from 'mint-ui';
+    import {Toast,Indicator} from 'mint-ui';
 
     import {login} from '@/api/login'
 

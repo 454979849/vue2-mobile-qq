@@ -10,7 +10,7 @@
 <script>
     export default {
         name: "welcome",
-        mounted(){
+        created(){
             this.$store.commit('SHOW_FOOT_CHANGE',false);
         }
     }
@@ -24,7 +24,7 @@
         background-size: contain;
         #btns {
             position: absolute;
-            top: 86%;
+            bottom:.7rem;
             padding: 0 .1rem;
             width:100%;
             display: flex;

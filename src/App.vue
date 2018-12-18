@@ -71,7 +71,7 @@
         </div>
 
         <div id="mask" v-show="showMask" @click="close"></div>
-        <keep-alive>
+        <keep-alive :include="['friend']">
             <router-view v-transition/>
         </keep-alive>
         <Foot v-if="showFoot"></Foot>

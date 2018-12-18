@@ -36,6 +36,9 @@
 </template>
 
 <script>
+    import {register} from "../../api/register";
+    import {Toast,Indicator} from 'mint-ui';
+
 
     export default {
         name: "register",
@@ -70,10 +73,10 @@
                         active: false
                     }
                 },
-                userName: '',
-                password: '',
-                passwordConfirm: '',
-                nickName: '',
+                userName: '454979849',
+                password: '123456',
+                passwordConfirm: '123456',
+                nickName: '大约在冬季',
             }
         },
         methods: {
@@ -104,7 +107,14 @@
                         this.$refs.nickName.$refs.input.focus();
                         this.rules.nickName.active = true;
                     } else {
+                        Indicator.open();
                         //注册接口
+                        register({
+                            userName: this.userName, password: this.password, nickName: this.nickName
+                        }).then(res => {
+                            Indicator.close();
+                            console.log(res);
+                        })
                     }
                 }
             }
@@ -113,9 +123,9 @@
 </script>
 
 <style lang="scss">
-    .register{
-        .mint-field-core{
-            height:48px;
+    .register {
+        .mint-field-core {
+            height: 48px;
         }
     }
 </style>

@@ -8,11 +8,11 @@ export default new Router({
     scrollBehavior: () => ({y: 0}),
     routes: [
         {path: '/', redirect: '/welcome'},
-        {path: '/welcome', component: () => import('@/views/welcome/index')},
-        {path: '/login', component: () => import('@/views/login/index')},
-        {path: '/register', component: () => import('@/views/register/index')},
-        {path: '/message/:userId', component: () => import('@/views/message/index')},
-        {path: '/friend/:userId', component: () => import('@/views/friend/index')},
-        {path: '/dynamic/:userId', component: () => import('@/views/dynamic/index')},
+        {path: '/welcome', component: () => import('@/views/welcome/index'), name: 'Welcome'},
+        {path: '/login', component: () => import('@/views/login/index'), name: 'Login'},
+        {path: '/register', component: () => import('@/views/register/index'), name: 'Register'},
+        {path: '/message/:userId', component: () => import('@/views/message/index'), name: 'Message'},
+        {path: '/friend/:userId', component: () => import('@/views/friend/index'), name: 'Friend'},
+        {path: '/dynamic/:userId', component: () => import('@/views/dynamic/index'), name: 'Dynamic'},
     ]
 })

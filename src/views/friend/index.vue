@@ -49,11 +49,20 @@
 
     export default {
         name: "friend",
-        components: {mHead,FriendList,GroupList,PublicList},
+        components: {mHead, FriendList, GroupList, PublicList},
+        //进入路由前执行的方法，因为该组件被缓存，于是生命周期不会重走，于是在这里设置footer的高亮
+        beforeRouteEnter(to,from,next) {
+            next(vm=>{
+                vm.setFootIndex();
+            });
+        },
         created() {
             this.$store.commit('SHOW_FOOT_CHANGE', true);
         },
         methods: {
+            setFootIndex(){
+                this.$store.commit('SET_FOOT_INDEX', 1);
+            },
             loadTop() {
                 //定时器模拟异步请求效果
                 setTimeout(() => {
@@ -66,10 +75,10 @@
                 }, 1000)
             }
         },
-        mounted(){
-          this.$store.commit('SET_FRIEND_LIST',this.friendList);
-          console.log()
-          sessionStorage.setItem('friendList',JSON.stringify(this.friendList));
+        mounted() {
+            this.$store.commit('SET_FRIEND_LIST', this.friendList);
+            console.log()
+            sessionStorage.setItem('friendList', JSON.stringify(this.friendList));
         },
         data() {
             return {
@@ -100,7 +109,7 @@
                         autograph: '鸡子的个性签名',
                         vip: 1
                     }, {
-                        imgSrc:'http://120.79.192.193/assets/headImgs/7.jpg',
+                        imgSrc: 'http://120.79.192.193/assets/headImgs/7.jpg',
                         nickName: '鸭子',
                         autograph: '鸭子的个性签名',
                         vip: 0
@@ -187,20 +196,20 @@
                         vip: 0
                     }]
                 }],
-                publicList:[{
-                    letter:'D',
-                    subList:[{
-                        imgSrc:'http://120.79.192.193/assets/publicImgs/1.jpeg',
-                        name:'道聚城'
+                publicList: [{
+                    letter: 'D',
+                    subList: [{
+                        imgSrc: 'http://120.79.192.193/assets/publicImgs/1.jpeg',
+                        name: '道聚城'
                     }]
-                },{
-                    letter:'H',
-                    subList:[{
-                        imgSrc:'http://120.79.192.193/assets/publicImgs/2.jpeg',
-                        name:'好友动态'
-                    },{
-                        imgSrc:'http://120.79.192.193/assets/publicImgs/3.jpeg',
-                        name:'黑口袋'
+                }, {
+                    letter: 'H',
+                    subList: [{
+                        imgSrc: 'http://120.79.192.193/assets/publicImgs/2.jpeg',
+                        name: '好友动态'
+                    }, {
+                        imgSrc: 'http://120.79.192.193/assets/publicImgs/3.jpeg',
+                        name: '黑口袋'
                     }]
                 }]
             }

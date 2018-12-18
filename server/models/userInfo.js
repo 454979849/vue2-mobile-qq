@@ -5,7 +5,12 @@ let findDataByName = function (name) {
     return query(_sql, name)
 }
 
+let register = function (arr) {
+    let _sql = 'INSERT INTO user(userName,password,nickName,isVip,say,userHead,userBg) VALUES(?,?,?,?,?,?,?);'
+    return query(_sql, arr)
+}
 
 module.exports = {
-    findDataByName
+    findDataByName,
+    register
 }

@@ -98,6 +98,7 @@
         },
         created() {
             this.$store.commit('SHOW_FOOT_CHANGE', true);
+            this.$store.commit('SET_FOOT_INDEX', 2);
         }
     }
 </script>

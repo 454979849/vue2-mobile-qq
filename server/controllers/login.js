@@ -4,9 +4,8 @@ const userModel = require("../models/userInfo");
 module.exports = async (ctx, next) => {
     let userName = ctx.request.body.userName || '';
     let password = ctx.request.body.password || '';
-    const userItemRow = await userModel.findDataByName(userName);
-    console.log(userItemRow);
-    const res = JSON.parse(JSON.stringify(userItemRow));
+    const row = await userModel.findDataByName(userName);
+    const res = JSON.parse(JSON.stringify(row));
     if (res.length > 0) {
         if (password == res[0].password) {
             ctx.body = {
