@@ -1,14 +1,11 @@
-const user={
-    state:{
-        userObj:{
-            userId:1
+const user = {
+    state: {
+        userObj: {
+            userId: localStorage.getItem('_userId') || undefined,
+            userName: localStorage.getItem('_userName') || undefined
         }
     },
-    mutations:{
-
-    },
-    actions:{
-
-    }
+    mutations: {},
+    actions: {}
 }
 export default user

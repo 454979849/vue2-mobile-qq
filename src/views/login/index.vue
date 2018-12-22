@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import {Toast,Indicator} from 'mint-ui';
+    import {Toast, Indicator} from 'mint-ui';
 
     import {login} from '@/api/login'
 
@@ -43,8 +43,8 @@
         },
         data() {
             return {
-                qq: '111111',
-                pwd: '123456'
+                qq: localStorage.getItem('_userName') ? localStorage.getItem('_userName') : '111111',
+                pwd: localStorage.getItem('_password') ? localStorage.getItem('_password') : '123456'
             }
         },
         mounted() {
@@ -56,21 +56,26 @@
 <style scoped lang="scss">
     .login {
         padding: .3rem;
+
         .logo {
             margin-top: .5rem;
+
             img {
                 height: .3rem;
                 vertical-align: middle;
                 margin-right: .18rem;
             }
+
             span {
                 font-size: .28rem;
                 color: #666566;
                 vertical-align: middle;
             }
         }
+
         .form {
             margin-top: .48rem;
+
             input {
                 display: block;
                 width: 100%;

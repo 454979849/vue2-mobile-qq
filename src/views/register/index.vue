@@ -37,7 +37,7 @@
 
 <script>
     import {register} from "../../api/register";
-    import {Toast,Indicator} from 'mint-ui';
+    import {Toast, Indicator, MessageBox} from 'mint-ui';
 
 
     export default {
@@ -113,7 +113,23 @@
                             userName: this.userName, password: this.password, nickName: this.nickName
                         }).then(res => {
                             Indicator.close();
-                            console.log(res);
+                            res = res.data;
+                            if (res.code == '201') {
+                                //qq号已存在，注册失败
+                                MessageBox({
+                                    title: '来自刘洋的消息',
+                                    message: res.message,
+                                });
+                            } else {
+                                localStorage.setItem('_userName', this.userName);
+                                localStorage.setItem('_password',this.password);
+                                MessageBox({
+                                    title: '注册成功！',
+                                    message: `您注册的qq号为${this.userName}，请牢记！`
+                                }).then(()=>{
+                                    this.$router.push('/login')
+                                });
+                            }
                         })
                     }
                 }
@@ -137,17 +153,22 @@
         flex-direction: column;
         justify-content: space-around;
         padding: 0 .2rem;
+
         .formItem {
             margin-top: .2rem;
+
             .inputBox {
                 border-bottom: .01rem solid #ddd;
+
                 &.active {
                     border-bottom: .01rem solid red;
                 }
             }
+
             .warningBox {
                 margin-top: .05rem;
                 height: .2rem;
+
                 p.red {
                     color: red;
                     font-size: .12rem;
