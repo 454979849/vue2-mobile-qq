@@ -12,7 +12,7 @@ server.listen(3000);
 app.use(cors());
 
 app.use(bodyParser());//获取post请求的参数的中间件
-app.use(router.routes()).use(router.allowedMethods())
+app.use(router.routes()).use(router.allowedMethods());
 
 
-console.log("服务器已启动,端口3389");
+console.log("服务器已启动,端口3000");
