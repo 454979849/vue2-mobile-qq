@@ -12,13 +12,13 @@
                     <div class="userInfo">
                         <img class="vip"
                              :src="userInfo.vip==2?'http://120.79.192.193/assets/svip.png':userInfo.vip==1?'http://120.79.192.193/assets/vip.png':''">
-                        <img src="./assets/user/huangguan.png">
-                        <img src="./assets/user/taiyang.png">
-                        <img src="./assets/user/taiyang.png">
-                        <img src="./assets/user/taiyang.png">
-                        <img src="./assets/user/xingxing.png">
-                        <img src="./assets/user/xingxing.png">
-                        <img src="./assets/user/xingxing.png">
+                        <img src="http://120.79.192.193/assets/user/huangguan.png">
+                        <img src="http://120.79.192.193/assets/user/taiyang.png">
+                        <img src="http://120.79.192.193/assets/user/taiyang.png">
+                        <img src="http://120.79.192.193/assets/user/taiyang.png">
+                        <img src="http://120.79.192.193/assets/user/xingxing.png">
+                        <img src="http://120.79.192.193/assets/user/xingxing.png">
+                        <img src="http://120.79.192.193/assets/user/xingxing.png">
                     </div>
                 </div>
             </div>
