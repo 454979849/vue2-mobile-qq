@@ -13,6 +13,7 @@ module.exports = async (ctx, next) => {
                 success: true,
                 message: '登录成功',
                 userInfo: {
+                    id: res[0].id,
                     userName: res[0].userName,
                     password: res[0].password,
                     isVip: res[0].isVip,

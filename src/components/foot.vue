@@ -22,7 +22,7 @@
     export default {
         name: "foot",
         computed:{
-            ...mapGetters(['userId','footIndex'])
+            ...mapGetters(['userInfo','footIndex'])
         },
         methods:{
             pageChange(index){
@@ -31,9 +31,9 @@
                 }
                 sessionStorage.setItem('footIndex',index);
                 this.$store.commit('SET_FOOT_INDEX',index);
-                if(index==0) this.$router.push(`/message/${this.userId}`)
-                else if(index==1) this.$router.push(`/friend/${this.userId}`)
-                else if(index==2) this.$router.push(`/dynamic/${this.userId}`)
+                if(index==0) this.$router.push(`/message/${this.userInfo.id}`)
+                else if(index==1) this.$router.push(`/friend/${this.userInfo.id}`)
+                else if(index==2) this.$router.push(`/dynamic/${this.userInfo.id}`)
             }
         },
         data(){

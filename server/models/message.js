@@ -1,8 +1,8 @@
 const {query} = require('../utils/db');
 
-let getMessage = function (userid) {
-    let _sql = 'SELECT * FROM message WHERE toId= ? '
-    return query(_sql, userid)
+let getMessage = function (userId) {
+    let _sql = 'SELECT * FROM message WHERE toId= ? or fromId= ?'
+    return query(_sql, [userId,userId])
 }
 
 module.exports = {

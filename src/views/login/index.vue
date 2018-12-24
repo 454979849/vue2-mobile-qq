@@ -30,12 +30,17 @@
                     login({userName: this.qq, password: this.pwd}).then(res => {
                         Indicator.close();
                         res = res.data;
+                        console.log(res);
                         Toast({
                             message: res.message,
                             position: 'center',
                             duration: 1000
                         })
-                        this.$router.push('/message/1')
+                        if(res.code=='200'){
+                            this.$store.commit('SET_USER_INFO',res.userInfo);
+                            localStorage.setItem('_userInfo',JSON.stringify(res.userInfo));
+                            this.$router.push(`/message/${res.userInfo.id}`)
+                        }
                     })
 
                 }
@@ -43,8 +48,15 @@
         },
         data() {
             return {
-                qq: localStorage.getItem('_userName') ? localStorage.getItem('_userName') : '111111',
-                pwd: localStorage.getItem('_password') ? localStorage.getItem('_password') : '123456'
+                qq: '111111',
+                pwd: '123456'
+            }
+        },
+        watch: {
+            qq(val) {
+                if (val == '') {
+                    this.pwd = '';
+                }
             }
         },
         mounted() {

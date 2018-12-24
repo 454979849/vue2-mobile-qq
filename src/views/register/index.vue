@@ -121,8 +121,6 @@
                                     message: res.message,
                                 });
                             } else {
-                                localStorage.setItem('_userName', this.userName);
-                                localStorage.setItem('_password',this.password);
                                 MessageBox({
                                     title: '注册成功！',
                                     message: `您注册的qq号为${this.userName}，请牢记！`

@@ -1,6 +1,6 @@
 <template>
     <div class="mhead">
-        <img :src="userHead" class="userHead" @click="showUserPanel">
+        <img :src="userInfo.userHead" class="userHead" @click="showUserPanel">
         <p class="searchBar">
             <i class="fa fa-search"></i>
             <span>{{placeholder}}</span>
@@ -16,12 +16,15 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex'
     export default {
         name: "mhead",
         props:['pageType','placeholder'],
+        computed:{
+            ...mapGetters(['userInfo'])
+        },
         data(){
             return {
-                userHead: 'http://120.79.192.193/assets/headImgs/1.jpg'
 
             }
         },

@@ -1,11 +1,12 @@
 const user = {
     state: {
-        userObj: {
-            userId: localStorage.getItem('_userId') || undefined,
-            userName: localStorage.getItem('_userName') || undefined
+        userInfo: JSON.parse(localStorage.getItem('_userInfo')) || {}
+    },
+    mutations: {
+        SET_USER_INFO(state,userInfo) {
+            state.userInfo = userInfo;
         }
     },
-    mutations: {},
     actions: {}
 }
 export default user

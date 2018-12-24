@@ -1,5 +1,5 @@
 const getters = {
-    userId:state=>state.user.userObj.userId,
+    userInfo:state=>state.user.userInfo,
     footIndex:state=>state.app.footIndex,
     showFoot:state=>state.app.showFoot,
     showMask:state=>state.app.showMask,
