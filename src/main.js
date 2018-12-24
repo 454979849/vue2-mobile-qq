@@ -35,7 +35,7 @@ Vue.directive('number', {
         }
     }
 })
-//自定义指令，v-limit 限制输入长度。如 v-limit="{length=12}"，就是限制长度为12位
+//自定义指令，v-limit 限制输入长度。如 v-limit="{length:12}"，就是限制长度为12位
 Vue.directive('limit', {
     bind(el, binding, vnode) {
         el.oninput = function () {
