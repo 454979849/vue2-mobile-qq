@@ -5,10 +5,10 @@
             <ul class="messageList">
                 <li class="li" v-for="(item,index) in messageList">
                     <div class="imgBox left">
-                        <img :src="item[0].fromId==userInfo.id?item[0].toImg:item[0].fromImg">
+                        <img :src="item[0].userHead">
                     </div>
                     <div class="detail right">
-                        <span>{{item[0].fromId==userInfo.id?item[0].toNickName:item[0].fromNickName}}</span>
+                        <span>{{item[0].nickName}}</span>
                         <p>{{item[item.length-1].content}}</p>
                     </div>
                 </li>
@@ -53,10 +53,13 @@
             renderMessage(callback){
                 getMessage(this.userInfo.id).then(res => {
                     res = res.data.messageList;
+
                     var obj = {};
                     res.forEach(item => {
                         if (item.toId == this.userInfo.id) {
                             obj[item.fromId] = []
+                        }else if (item.fromId==this.userInfo.id){
+                            obj[item.toId]=[];
                         }
                     })
 
@@ -74,6 +77,7 @@
                         })
                         this.messageList.push(obj[key]);
                     }
+                    console.log(this.messageList);
 
                     if(callback){
                         callback();

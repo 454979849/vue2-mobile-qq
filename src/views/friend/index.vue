@@ -40,8 +40,11 @@
     import FriendList from '@/components/friendList'
     import GroupList from '@/components/groupList'
     import PublicList from '@/components/publicList'
+    import {mapGetters} from 'vuex'
 
     import {Toast, Navbar, TabItem, Loadmore} from 'mint-ui';
+
+    import {getFriend} from "../../api/friend";
 
     Vue.component(Loadmore.name, Loadmore);
     Vue.component(Navbar.name, Navbar);
@@ -56,8 +59,14 @@
                 vm.setFootIndex();
             });
         },
+        computed:{
+            ...mapGetters(['userInfo'])
+        },
         created() {
             this.$store.commit('SHOW_FOOT_CHANGE', true);
+            getFriend(this.userInfo.id).then(res=>{
+                console.log(res);
+            })
         },
         methods: {
             setFootIndex(){
@@ -77,7 +86,6 @@
         },
         mounted() {
             this.$store.commit('SET_FRIEND_LIST', this.friendList);
-            console.log()
             sessionStorage.setItem('friendList', JSON.stringify(this.friendList));
         },
         data() {
