@@ -1,7 +1,7 @@
 const app = {
     state: {
         showFoot: false,
-        footIndex: sessionStorage.getItem('footIndex') || 0,
+        footIndex: sessionStorage.getItem('_footIndex') || 0,
         showMask:false,
         showUserPanel:false
     },

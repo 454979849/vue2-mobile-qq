@@ -86,7 +86,7 @@
         },
         mounted() {
             this.$store.commit('SET_FRIEND_LIST', this.friendList);
-            sessionStorage.setItem('friendList', JSON.stringify(this.friendList));
+            sessionStorage.setItem('_friendList', JSON.stringify(this.friendList));
         },
         data() {
             return {

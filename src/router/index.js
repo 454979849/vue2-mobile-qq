@@ -14,5 +14,6 @@ export default new Router({
         {path: '/message/:userId', component: () => import('@/views/message/index'), name: 'Message'},
         {path: '/friend/:userId', component: () => import('@/views/friend/index'), name: 'Friend'},
         {path: '/dynamic/:userId', component: () => import('@/views/dynamic/index'), name: 'Dynamic'},
+        {path:'/dialog',component:()=>import('@/views/dialog/index'),name:'Dialog'}
     ]
 })

@@ -3,7 +3,7 @@
         <mHead pageType="message" placeholder="搜索"></mHead>
         <mt-loadmore class="messageListWrapper" :top-method="loadTop" ref="loadmore">
             <ul class="messageList">
-                <li class="li" v-for="(item,index) in messageList">
+                <li class="li" v-for="(item,index) in messageList" @click="openDialog(item)">
                     <div class="imgBox left">
                         <img :src="item[0].userHead">
                     </div>
@@ -78,11 +78,16 @@
                         this.messageList.push(obj[key]);
                     }
                     console.log(this.messageList);
+                    this.$store.commit('SET_MESSAGE_LIST',this.messageList);
 
                     if(callback){
                         callback();
                     }
                 })
+            },
+            openDialog(arr){
+                this.$store.commit('SET_CURRENT_MESSAGE',arr);
+                this.$router.push('/dialog')
             }
         },
         data() {
