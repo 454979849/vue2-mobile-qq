@@ -59,7 +59,7 @@
                 }
             }
         },
-        mounted() {
+        created() {
             this.$store.commit('SHOW_FOOT_CHANGE', false);
         }
     }

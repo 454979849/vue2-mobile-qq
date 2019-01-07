@@ -86,6 +86,7 @@
                 })
             },
             openDialog(arr){
+                sessionStorage.setItem('_currentMessage',JSON.stringify(arr));
                 this.$store.commit('SET_CURRENT_MESSAGE',arr);
                 this.$router.push('/dialog')
             }

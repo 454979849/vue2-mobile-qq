@@ -2,7 +2,7 @@ const friend = {
     state: {
         friendList: JSON.parse(sessionStorage.getItem('_friendList')) || [],
         messageList: JSON.parse(sessionStorage.getItem('_messageList')) || [],
-        currentMessage:JSON.parse(sessionStorage.getItem('_currentMessage'))||[]
+        currentMessage:JSON.parse(sessionStorage.getItem('_currentMessage'))||[],
     },
     mutations: {
         SET_FRIEND_LIST(state, arr) {
