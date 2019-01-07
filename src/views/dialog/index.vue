@@ -6,7 +6,7 @@
         </div>
         <div class="dialogWrap">
             <ul>
-                <li v-for="(item,index) in currentMessage">
+                <li v-for="(item,index) in currentMessage" :key="index" class="mItem">
                     <div class="left" v-if="item.fromId!=userInfo.id">
                         {{item.content}}
                     </div>
