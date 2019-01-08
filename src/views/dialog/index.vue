@@ -1,20 +1,29 @@
 <template>
     <div class="dialog">
         <div class="currentFriend">
-            <i class="fa fa-angle-left"></i>
+            <i class="fa fa-angle-left" @click="$router.back()"></i>
             <span>{{currentNickName}}</span>
         </div>
-        <div class="dialogWrap">
+        <div class="dialogWrap" ref="dialogWrap">
             <ul>
                 <li v-for="(item,index) in currentMessage" :key="index" class="mItem">
                     <div class="left" v-if="item.fromId!=userInfo.id">
-                        {{item.content}}
+                        <img :src="item.userHead" >
+                        <div class="content" style="margin-left:.1rem;">
+                            {{item.content}}
+                        </div>
                     </div>
                     <div class="right" v-if="item.fromId==userInfo.id">
-                        {{item.content}}
+                        <div class="content" style="margin-right:.1rem;">
+                            {{item.content}}
+                        </div>
+                        <img :src="$store.state.user.userInfo.userHead" >
                     </div>
                 </li>
             </ul>
+        </div>
+        <div class="writeArea">
+            <input v-model="msg" @keydown.enter="sendMessage">
         </div>
     </div>
 </template>
@@ -29,13 +38,21 @@
         },
         data() {
             return {
-                currentNickName: ''
+                currentNickName: '',
+                msg:''
             }
         },
         created() {
             this.$store.commit('SHOW_FOOT_CHANGE', false);
-            console.log(this.currentMessage);
             this.currentNickName = this.currentMessage[0].nickName;
+        },
+        mounted(){
+            this.$refs.dialogWrap.scrollTop=100000000+'px'
+        },
+        methods:{
+            sendMessage(){
+
+            }
         }
     }
 </script>
@@ -47,14 +64,49 @@
         width: 100%;
         height: 100%;
         background: #ecedf0;
+        div.writeArea{
+            height:.6rem;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            input{
+                width:94%;
+                height:.44rem;
+                border-radius:.08rem;
+                border:none;
+                outline: none;
+                font-size:.17rem;
+                padding-left:.08rem;
+            }
+        }
         .dialogWrap{
+            height:calc(100% - 1.2rem);
             &>ul{
                 padding:0 0.1rem;
                 li{
                     height:.7rem;
                     &>div{
-                        height:.4rem;
+                        line-height:.4rem;
                         margin-top:.15rem;
+                        display:flex;
+                        width:calc(100% - 1rem);
+                        align-items:center;
+                        &>img{
+                            height:.4rem;
+                            border-radius:.2rem;
+                        }
+                        &>.content{
+                            max-width:calc(100% - 0.5rem);
+                            background:#fff;
+                            border-radius:0.14rem;
+                            padding:0 0.1rem;
+                        }
+                        &.right{
+                            .content{
+                                background:lightskyblue;
+                            }
+                            justify-content: flex-end;
+                        }
                     }
                 }
             }
