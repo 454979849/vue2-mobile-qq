@@ -47,7 +47,19 @@
         width: 100%;
         height: 100%;
         background: #ecedf0;
+        .dialogWrap{
+            &>ul{
+                padding:0 0.1rem;
+                li{
+                    height:.7rem;
+                    &>div{
+                        height:.4rem;
+                        margin-top:.15rem;
+                    }
+                }
+            }
 
+        }
         .currentFriend {
             height: .6rem;
             background: rgba(255, 255, 255, .2);
