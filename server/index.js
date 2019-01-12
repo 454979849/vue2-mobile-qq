@@ -8,9 +8,9 @@ const app = new Koa();
 
 const server = require("http").createServer(app.callback());
 const io = require("socket.io")(server);
-
 io.on('connection', socket => {
-    console.log(1);
+    console.log(socket.id);
+
 })
 
 
