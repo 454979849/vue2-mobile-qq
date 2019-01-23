@@ -126,10 +126,6 @@
             li {
                 height: .64rem;
 
-                &:first-child {
-                    background-color: #f0f1f3;
-                }
-
                 .imgBox {
                     width: 18%;
                     height: 100%;

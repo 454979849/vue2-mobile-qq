@@ -8,6 +8,8 @@ module.exports = async (ctx, next) => {
     const res = JSON.parse(JSON.stringify(row));
     if (res.length > 0) {
         if (password == res[0].password) {
+            let result=await userModel.setUserLoginStatus(res[0].id);
+            result=JSON.parse(JSON.stringify(result));
             ctx.body = {
                 code: 200,
                 success: true,
@@ -20,7 +22,7 @@ module.exports = async (ctx, next) => {
                     nickName: res[0].nickName,
                     say: res[0].say,
                     userHead: res[0].userHead,
-                    userBg: res[0].userBg,
+                    userBg: res[0].userBg
                 }
             }
         } else {
