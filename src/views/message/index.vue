@@ -77,8 +77,8 @@
                         })
                         this.messageList.push(obj[key]);
                     }
-                    console.log(this.messageList);
                     this.$store.commit('SET_MESSAGE_LIST',this.messageList);
+                    sessionStorage.setItem('_messageList',JSON.stringify(this.messageList))
 
                     if(callback){
                         callback();

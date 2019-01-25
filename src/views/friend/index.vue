@@ -67,7 +67,6 @@
             getFriend(this.userInfo.id).then(res => {
                 res = res.data.friendList;
                 let friendList = [], groupNames = [];
-
                 res.forEach(item => {
                     if (groupNames.indexOf(item.inA) == -1) {
                         groupNames.push(item.inA);
@@ -77,27 +76,30 @@
                                 imgSrc: item.userHead,
                                 nickName: item.nickName,
                                 autograph: item.say,
-                                vip: item.isVip
+                                vip: item.isVip,
+                                id:item.idB
                             }]
                         })
                     } else {
-                        friendList.forEach((v,i) => {
+                        friendList.forEach((v, i) => {
                             if (v.groupName == item.inA) {
                                 friendList[i].subList.push({
                                     imgSrc: item.userHead,
                                     nickName: item.nickName,
                                     autograph: item.say,
-                                    vip: item.isVip
+                                    vip: item.isVip,
+                                    id:item.idB
                                 })
                             }
                         })
                     }
                 })
-                this.friendList=friendList;
+                this.friendList = friendList;
             })
         },
         methods: {
             setFootIndex() {
+                this.$store.commit('SHOW_FOOT_CHANGE', true);
                 this.$store.commit('SET_FOOT_INDEX', 1);
             },
             loadTop() {
@@ -119,7 +121,7 @@
         data() {
             return {
                 selected: 'tab1',
-                friendList:[],
+                friendList: [],
                 publicList: [{
                     letter: 'D',
                     subList: [{
