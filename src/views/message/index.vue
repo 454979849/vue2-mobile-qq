@@ -41,7 +41,7 @@
         },
         methods: {
             loadTop() {
-                this.renderMessage(()=>{
+                this.renderMessage(() => {
                     Toast({
                         message: '更新成功',
                         position: 'center',
@@ -50,7 +50,7 @@
                     this.$refs.loadmore.onTopLoaded();
                 })
             },
-            renderMessage(callback){
+            renderMessage(callback) {
                 getMessage(this.userInfo.id).then(res => {
                     res = res.data.messageList;
 
@@ -58,8 +58,8 @@
                     res.forEach(item => {
                         if (item.toId == this.userInfo.id) {
                             obj[item.fromId] = []
-                        }else if (item.fromId==this.userInfo.id){
-                            obj[item.toId]=[];
+                        } else if (item.fromId == this.userInfo.id) {
+                            obj[item.toId] = [];
                         }
                     })
 
@@ -77,18 +77,17 @@
                         })
                         this.messageList.push(obj[key]);
                     }
-                    this.$store.commit('SET_MESSAGE_LIST',this.messageList);
-                    sessionStorage.setItem('_messageList',JSON.stringify(this.messageList))
+                    this.$store.commit('SET_MESSAGE_LIST', this.messageList);
+                    sessionStorage.setItem('_messageList', JSON.stringify(this.messageList))
 
-                    if(callback){
+                    if (callback) {
                         callback();
                     }
                 })
             },
-            openDialog(arr){
-                sessionStorage.setItem('_currentMessage',JSON.stringify(arr));
-                this.$store.commit('SET_CURRENT_MESSAGE',arr);
-                this.$router.push('/dialog')
+            openDialog(arr) {
+                let toId = arr[0].fromId == userInfo.id ? arr[0].toId : arr[0].fromId;
+                this.$router.push(`/dialog/${toId}`)
             }
         },
         data() {

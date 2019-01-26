@@ -39,7 +39,8 @@
                         if(res.code=='200'){
                             this.$store.commit('SET_USER_INFO',res.userInfo);
                             localStorage.setItem('_userInfo',JSON.stringify(res.userInfo));
-                            this.$router.push(`/message/${res.userInfo.id}`)
+                            socket.emit('login',res.userInfo.id);
+                            this.$router.push(`/message`)
                         }
                     })
 

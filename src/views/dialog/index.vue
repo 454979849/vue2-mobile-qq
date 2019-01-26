@@ -8,7 +8,7 @@
             <ul>
                 <li v-for="(item,index) in currentMessage" :key="index" class="mItem">
                     <div class="left" v-if="item.fromId!=userInfo.id">
-                        <img :src="item.userHead" >
+                        <img :src="item.userHead">
                         <div class="content" style="margin-left:.1rem;">
                             {{item.content}}
                         </div>
@@ -17,7 +17,7 @@
                         <div class="content" style="margin-right:.1rem;">
                             {{item.content}}
                         </div>
-                        <img :src="$store.state.user.userInfo.userHead" >
+                        <img :src="$store.state.user.userInfo.userHead">
                     </div>
                 </li>
             </ul>
@@ -30,28 +30,57 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import {sendMessage} from '@/api/dialog.js'
+    import {Toast} from 'mint-ui'
 
     export default {
         name: "currentDialog",
         computed: {
-            ...mapGetters(['currentMessage','userInfo'])
+            ...mapGetters(['userInfo', 'messageList','friendList']),
+            currentMessage() {
+                let id = this.$route.params.toId;
+                let num = 0, msg = [];
+                this.messageList.forEach(item => {
+                    if (item.some(function (v) {
+                        return v.fromId == id || v.toId == id;
+                    })) {
+                        num++;
+                        msg = item;
+                        return;
+                    }
+                })
+                return msg;
+            }
         },
         data() {
             return {
                 currentNickName: '',
-                msg:''
+                msg: ''
             }
         },
         created() {
             this.$store.commit('SHOW_FOOT_CHANGE', false);
-            this.currentNickName = this.currentMessage[0].nickName;
+            this.currentNickName=this.friendList.find(item=>{
+                return item.idB==this.$route.params.toId;
+            }).nickName;
         },
-        mounted(){
-            this.$refs.dialogWrap.scrollTop=100000000+'px'
+        mounted() {
+            this.$refs.dialogWrap.scrollTop = 100000000 + 'px'
         },
-        methods:{
-            sendMessage(){
-
+        methods: {
+            sendMessage() {
+                if (this.msg.length == 0) {
+                    Toast({
+                        message: '请输入消息',
+                        position: 'center',
+                        duration: 1000
+                    });
+                } else {
+                    let createTime = new Date().getTime();
+                    sendMessage(this.msg, this.userInfo.id, Number(this.$route.params.toId), createTime, 0).then(res => {
+                        console.log(res);
+                    })
+                }
             }
         }
     }
@@ -64,47 +93,57 @@
         width: 100%;
         height: 100%;
         background: #ecedf0;
-        div.writeArea{
-            height:.6rem;
-            display:flex;
+
+        div.writeArea {
+            height: .6rem;
+            display: flex;
             justify-content: center;
-            align-items:center;
-            input{
-                width:94%;
-                height:.44rem;
-                border-radius:.08rem;
-                border:none;
+            align-items: center;
+
+            input {
+                width: 94%;
+                height: .44rem;
+                border-radius: .08rem;
+                border: none;
                 outline: none;
-                font-size:.17rem;
-                padding-left:.08rem;
+                font-size: .17rem;
+                padding-left: .08rem;
             }
         }
-        .dialogWrap{
-            height:calc(100% - 1.2rem);
-            &>ul{
-                padding:0 0.1rem;
-                li{
-                    height:.7rem;
-                    &>div{
-                        line-height:.4rem;
-                        margin-top:.15rem;
-                        display:flex;
-                        width:calc(100% - 1rem);
-                        align-items:center;
-                        &>img{
-                            height:.4rem;
-                            border-radius:.2rem;
+
+        .dialogWrap {
+            height: calc(100% - 1.2rem);
+
+            & > ul {
+                padding: 0 0.1rem;
+
+                li {
+                    height: .7rem;
+
+                    & > div {
+                        line-height: .4rem;
+                        margin-top: .15rem;
+                        display: flex;
+                        width: calc(100% - 1rem);
+                        align-items: center;
+
+                        & > img {
+                            height: .4rem;
+                            border-radius: .2rem;
                         }
-                        &>.content{
-                            max-width:calc(100% - 0.5rem);
-                            background:#fff;
-                            border-radius:0.14rem;
-                            padding:0 0.1rem;
+
+                        & > .content {
+                            max-width: calc(100% - 0.5rem);
+                            background: #fff;
+                            border-radius: 0.14rem;
+                            padding: 0 0.1rem;
                         }
-                        &.right{
-                            .content{
-                                background:lightskyblue;
+
+                        &.right {
+                            .content {
+                                background: lightskyblue;
                             }
+
                             justify-content: flex-end;
                         }
                     }
@@ -112,6 +151,7 @@
             }
 
         }
+
         .currentFriend {
             height: .6rem;
             background: rgba(255, 255, 255, .2);

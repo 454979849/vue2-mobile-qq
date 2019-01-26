@@ -4,7 +4,7 @@ const getters = {
     showFoot:state=>state.app.showFoot,
     showMask:state=>state.app.showMask,
     showUserPanel:state=>state.app.showUserPanel,
-    currentMessage:state=>state.friend.currentMessage,
-    messageList:state=>state.friend.messageList
+    messageList:state=>state.friend.messageList,
+    friendList:state=>state.friend.friendList
 }
 export default getters

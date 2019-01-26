@@ -67,6 +67,8 @@
             getFriend(this.userInfo.id).then(res => {
                 res = res.data.friendList;
                 let friendList = [], groupNames = [];
+                this.$store.commit('SET_FRIEND_LIST', res);
+                sessionStorage.setItem('_friendList', JSON.stringify(res));
                 res.forEach(item => {
                     if (groupNames.indexOf(item.inA) == -1) {
                         groupNames.push(item.inA);
@@ -113,10 +115,6 @@
                     this.$refs.loadmore.onTopLoaded();
                 }, 1000)
             }
-        },
-        mounted() {
-            this.$store.commit('SET_FRIEND_LIST', this.friendList);
-            sessionStorage.setItem('_friendList', JSON.stringify(this.friendList));
         },
         data() {
             return {

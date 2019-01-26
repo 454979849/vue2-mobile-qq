@@ -20,7 +20,7 @@
     export default {
         name: "friendSubList",
         props: ['subList', 'openIndex'],
-        created(){
+        created() {
 
         },
         data() {
@@ -32,17 +32,7 @@
         methods: {
             openDialog(item) {
                 let id = item.id;
-                let messageList = this.$store.state.friend.messageList;
-                messageList.forEach(item => {
-                    if (item.some((v) => {
-                        return v.fromId == id || v.toId == id;
-                    })) {
-                        console.log(item);
-                        sessionStorage.setItem('_currentMessage',JSON.stringify(item));
-                        this.$store.commit('SET_CURRENT_MESSAGE',item);
-                        this.$router.push('/dialog')
-                    }
-                })
+                this.$router.push('/dialog/' + id)
             }
         }
     }

@@ -11,9 +11,9 @@ export default new Router({
         {path: '/welcome', component: () => import('@/views/welcome/index'), name: 'Welcome'},
         {path: '/login', component: () => import('@/views/login/index'), name: 'Login'},
         {path: '/register', component: () => import('@/views/register/index'), name: 'Register'},
-        {path: '/message/:userId', component: () => import('@/views/message/index'), name: 'Message'},
-        {path: '/friend/:userId', component: () => import('@/views/friend/index'), name: 'Friend'},
-        {path: '/dynamic/:userId', component: () => import('@/views/dynamic/index'), name: 'Dynamic'},
-        {path:'/dialog',component:()=>import('@/views/dialog/index'),name:'Dialog'}
+        {path: '/message', component: () => import('@/views/message/index'), name: 'Message'},
+        {path: '/friend', component: () => import('@/views/friend/index'), name: 'Friend'},
+        {path: '/dynamic', component: () => import('@/views/dynamic/index'), name: 'Dynamic'},
+        {path:'/dialog/:toId',component:()=>import('@/views/dialog/index'),name:'Dialog'}
     ]
 })

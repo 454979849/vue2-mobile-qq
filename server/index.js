@@ -4,14 +4,20 @@ const cors = require("koa2-cors");
 const dbConfig = require("./config").db;
 const router = require("./routes/index");
 const { query } = require("./utils/db");
+let socketModel = require('./socket/index');
 const app = new Koa();
 
 const server = require("http").createServer(app.callback());
 const io = require("socket.io")(server);
 io.on('connection', socket => {
-    console.log(socket.id);
-
-})
+    const socketId=socket.id;
+    socket.on("login", async userId => {
+        await socketModel.saveUserSocketId(userId, socketId);
+    });
+    socket.on('update',async userId=>{
+        await socketModel.saveUserSocketId(userId,socketId);
+    })
+});
 
 
 server.listen(3000);

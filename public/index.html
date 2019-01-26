@@ -16,6 +16,10 @@
     document.getElementsByTagName('html')[0].style.fontSize = width / 4.14 + 'px';
 
     const socket = io('http://localhost:3000');
+    const userInfo = JSON.parse(localStorage.getItem("_userInfo"))
+    if (userInfo) {
+        socket.emit('update', userInfo.id);
+    }
 
 </script>
 <!-- built files will be auto injected -->
