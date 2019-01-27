@@ -31,6 +31,7 @@
 <script>
     import {mapGetters} from 'vuex'
     import {sendMessage} from '@/api/dialog.js'
+    import {getMessage} from '@/api/message.js'
     import {Toast} from 'mint-ui'
 
     export default {
@@ -60,15 +61,19 @@
         },
         created() {
             this.$store.commit('SHOW_FOOT_CHANGE', false);
-            this.currentNickName=this.friendList.find(item=>{
-                return item.idB==this.$route.params.toId;
-            }).nickName;
+            if(this.currentMessage.length){
+                this.currentNickName=this.currentMessage[0].nickName;
+            }else{
+                this.currentNickName=this.friendList.find(item=>{
+                    return item.idB==this.$route.params.toId;
+                }).nickName;
+            }
         },
         mounted() {
             this.$refs.dialogWrap.scrollTop = 100000000 + 'px'
         },
         methods: {
-            sendMessage() {
+            async sendMessage() {
                 if (this.msg.length == 0) {
                     Toast({
                         message: '请输入消息',
@@ -77,11 +82,18 @@
                     });
                 } else {
                     let createTime = new Date().getTime();
-                    sendMessage(this.msg, this.userInfo.id, Number(this.$route.params.toId), createTime, 0).then(res => {
-                        console.log(res);
-                    })
+                    let res=await sendMessage(this.msg, this.userInfo.id, Number(this.$route.params.toId), createTime, 0)
+                    res=res.data;
+                    if(res.code=='200'){
+                        this.msg='';
+                        this.renderMessage();
+                        socket.emit('sendMessage',this.$route.params.toId);
+                    }
                 }
-            }
+            },
+            renderMessage() {
+                this.$store.dispatch('GET_MESSAGE',this.userInfo.id);
+            },
         }
     }
 </script>

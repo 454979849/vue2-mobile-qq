@@ -10,6 +10,9 @@
                     <div class="detail right">
                         <span>{{item[0].nickName}}</span>
                         <p>{{item[item.length-1].content}}</p>
+                        <div class="unReadNum">
+                            {{getUnReadNum(item)}}
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -32,7 +35,7 @@
         name: "message",
         components: {mHead},
         computed: {
-            ...mapGetters(['userInfo'])
+            ...mapGetters(['userInfo','messageList'])
         },
         created() {
             this.$store.commit('SHOW_FOOT_CHANGE', true);
@@ -50,51 +53,26 @@
                     this.$refs.loadmore.onTopLoaded();
                 })
             },
-            renderMessage(callback) {
-                getMessage(this.userInfo.id).then(res => {
-                    res = res.data.messageList;
-
-                    var obj = {};
-                    res.forEach(item => {
-                        if (item.toId == this.userInfo.id) {
-                            obj[item.fromId] = []
-                        } else if (item.fromId == this.userInfo.id) {
-                            obj[item.toId] = [];
-                        }
-                    })
-
-                    res.forEach(item => {
-                        if (item.fromId in obj) {
-                            obj[item.fromId].push({...item})
-                        } else if (item.toId in obj) {
-                            obj[item.toId].push({...item})
-                        }
-                    })
-
-                    for (var key in obj) {
-                        obj[key].sort(function (a, b) {
-                            return a.createTime - b.createTime;
-                        })
-                        this.messageList.push(obj[key]);
-                    }
-                    this.$store.commit('SET_MESSAGE_LIST', this.messageList);
-                    sessionStorage.setItem('_messageList', JSON.stringify(this.messageList))
-
-                    if (callback) {
-                        callback();
-                    }
-                })
+            async renderMessage(callback) {
+                await this.$store.dispatch('GET_MESSAGE',this.userInfo.id);
+                if(callback){
+                    callback();
+                }
             },
             openDialog(arr) {
                 let toId = arr[0].fromId == userInfo.id ? arr[0].toId : arr[0].fromId;
                 this.$router.push(`/dialog/${toId}`)
+            },
+            getUnReadNum(item){
+                return item.filter(v=>{
+                    return v.isRead==0;
+                }).length;
             }
         },
         data() {
             return {
                 popupVisible: true,
-                searchWords: '',
-                messageList: []
+                searchWords: ''
             }
         }
     }
@@ -124,7 +102,6 @@
 
             li {
                 height: .64rem;
-
                 .imgBox {
                     width: 18%;
                     height: 100%;
@@ -145,7 +122,7 @@
                     padding-top: .1rem;
                     padding-bottom: .12rem;
                     justify-content: space-around;
-
+                    position:relative;
                     span {
                         font-size: .16rem;
                     }
@@ -153,6 +130,18 @@
                     p {
                         color: #666;
                         font-size: .13rem;
+                    }
+                    .unReadNum{
+                        position:absolute;
+                        right:.15rem;
+                        width:.24rem;
+                        height:.24rem;
+                        line-height:.24rem;
+                        text-align:center;
+                        font-size:.14rem;
+                        border-radius:50%;
+                        color:#fff;
+                        background:red;
                     }
                 }
             }

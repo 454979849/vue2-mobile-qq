@@ -1,7 +1,7 @@
 <template>
     <div class="mhead">
         <img :src="userInfo.userHead" class="userHead" @click="showUserPanel">
-        <p class="searchBar">
+        <p class="searchBar" @click="$router.push('/search')">
             <i class="fa fa-search"></i>
             <span>{{placeholder}}</span>
         </p>

@@ -17,6 +17,12 @@ io.on('connection', socket => {
     socket.on('update',async userId=>{
         await socketModel.saveUserSocketId(userId,socketId);
     })
+    socket.on('sendMessage',async toId=>{
+        let arr =await socketModel.getUserSocketId(toId);
+        console.log(arr);
+        const toSocketId=JSON.parse(JSON.stringify(arr[0])).socketId;
+        io.to(toSocketId).emit('msgComming');
+    })
 });
 
 

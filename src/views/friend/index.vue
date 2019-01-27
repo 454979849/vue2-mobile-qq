@@ -44,7 +44,7 @@
 
     import {Toast, Navbar, TabItem, Loadmore} from 'mint-ui';
 
-    import {getFriend} from "../../api/friend";
+    import {getFriend} from "@/api/friend";
 
     Vue.component(Loadmore.name, Loadmore);
     Vue.component(Navbar.name, Navbar);
@@ -70,27 +70,29 @@
                 this.$store.commit('SET_FRIEND_LIST', res);
                 sessionStorage.setItem('_friendList', JSON.stringify(res));
                 res.forEach(item => {
-                    if (groupNames.indexOf(item.inA) == -1) {
-                        groupNames.push(item.inA);
+                    let gName=item.idA==this.userInfo.id?item.inA:item.inB;
+                    let id=item.idA==this.userInfo.id?item.idB:item.idA;
+                    if (groupNames.indexOf(gName) == -1) {
+                        groupNames.push(gName);
                         friendList.push({
-                            groupName: item.inA,
+                            groupName: gName,
                             subList: [{
                                 imgSrc: item.userHead,
                                 nickName: item.nickName,
                                 autograph: item.say,
                                 vip: item.isVip,
-                                id:item.idB
+                                id
                             }]
                         })
                     } else {
                         friendList.forEach((v, i) => {
-                            if (v.groupName == item.inA) {
+                            if (v.groupName == gName) {
                                 friendList[i].subList.push({
                                     imgSrc: item.userHead,
                                     nickName: item.nickName,
                                     autograph: item.say,
                                     vip: item.isVip,
-                                    id:item.idB
+                                    id
                                 })
                             }
                         })

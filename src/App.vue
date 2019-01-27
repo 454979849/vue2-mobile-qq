@@ -7,11 +7,11 @@
                 <div class="content">
                     <div class="userName">
                         <img :src="userInfo.userHead">
-                        <span>{{userInfo.userName}}</span>
+                        <span>{{userInfo.nickName}}</span>
                     </div>
                     <div class="userInfo">
                         <img class="vip"
-                             :src="userInfo.vip==2?'http://120.79.192.193/assets/svip.png':userInfo.vip==1?'http://120.79.192.193/assets/vip.png':''">
+                             :src="userInfo.isVip==2?'http://120.79.192.193/assets/svip.png':userInfo.isVip==1?'http://120.79.192.193/assets/vip.png':''">
                         <img src="http://120.79.192.193/assets/user/huangguan.png">
                         <img src="http://120.79.192.193/assets/user/taiyang.png">
                         <img src="http://120.79.192.193/assets/user/taiyang.png">
@@ -71,7 +71,7 @@
         </div>
 
         <div id="mask" v-show="showMask" @click="close"></div>
-        <keep-alive :include="['friend']">
+        <keep-alive :include="['friend','search']">
             <router-view v-transition/>
         </keep-alive>
         <Foot v-if="showFoot"></Foot>
@@ -86,20 +86,19 @@
     export default {
         components: {Foot},
         computed: {
-            ...mapGetters(['showFoot', 'showMask', 'showUserPanel'])
+            ...mapGetters(['userInfo','showFoot', 'showMask', 'showUserPanel'])
         },
         data() {
             return {
-                userInfo: {
-                    userHead: 'http://120.79.192.193/assets/user/userHead.jpg',
-                    userBg: 'http://120.79.192.193/assets/user/userBg.png',
-                    userName: '龙城故事',
-                    vip: 2
-                },
                 imgBottom: '',
                 timer: null,
                 direction: 'up'
             }
+        },
+        created(){
+            socket.on('msgComming',()=>{
+                this.$store.dispatch('GET_MESSAGE',this.userInfo.id);
+            })
         },
         mounted() {
             this.timer = setInterval(() => {
