@@ -1,4 +1,3 @@
-//隐藏地址栏
 (function(win) {
 	var doc = win.document
 
@@ -9,8 +8,6 @@
 			getScrollTop = function() {
 				return win.pageYOffset || doc.compatMode === "CSS1Compat" && doc.documentElement.scrollTop || doc.body.scrollTop || 0
 			},
-
-			//reset to 0 on bodyready, if needed
 			bodycheck = setInterval(function() {
 				if (doc.body) {
 					clearInterval(bodycheck);
