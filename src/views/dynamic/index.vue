@@ -1,6 +1,6 @@
 <template>
     <div class="dynamic">
-        <mHead pageType="dynamic" placeholder="大家都在搜：优酷杨东伟被调查"></mHead>
+        <mHead></mHead>
         <div class="wrapper">
             <div class="content">
                 <div class="qqSpace">

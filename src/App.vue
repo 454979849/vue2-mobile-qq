@@ -12,60 +12,66 @@
                     <div class="userInfo">
                         <img class="vip"
                              :src="userInfo.isVip==2?'http://120.79.192.193/assets/svip.png':userInfo.isVip==1?'http://120.79.192.193/assets/vip.png':''">
-                        <img src="http://120.79.192.193/assets/user/huangguan.png">
-                        <img src="http://120.79.192.193/assets/user/taiyang.png">
-                        <img src="http://120.79.192.193/assets/user/taiyang.png">
-                        <img src="http://120.79.192.193/assets/user/taiyang.png">
-                        <img src="http://120.79.192.193/assets/user/xingxing.png">
-                        <img src="http://120.79.192.193/assets/user/xingxing.png">
-                        <img src="http://120.79.192.193/assets/user/xingxing.png">
+                        <!--<img src="http://120.79.192.193/assets/user/huangguan.png">-->
+                        <!--<img src="http://120.79.192.193/assets/user/taiyang.png">-->
+                        <!--<img src="http://120.79.192.193/assets/user/taiyang.png">-->
+                        <!--<img src="http://120.79.192.193/assets/user/taiyang.png">-->
+                        <!--<img src="http://120.79.192.193/assets/user/xingxing.png">-->
+                        <!--<img src="http://120.79.192.193/assets/user/xingxing.png">-->
+                        <!--<img src="http://120.79.192.193/assets/user/xingxing.png">-->
                     </div>
                 </div>
             </div>
             <div class="menu">
                 <ul>
-                    <li>
+                    <li class="signOut">
                         <p class="iBox">
-                            <i class="fa fa-diamond"></i>
+                            <i class="fa fa-sign-out"></i>
                         </p>
-                        <span>我的超级会员</span>
+                        <span @click="logout">退出登录</span>
                     </li>
-                    <li>
-                        <p class="iBox">
-                            <i class="fa fa-jpy"></i>
-                        </p>
-                        <span>QQ钱包</span>
-                    </li>
-                    <li>
-                        <p class="iBox">
-                            <i class="fa fa-paint-brush"></i>
-                        </p>
-                        <span>个性装扮</span>
-                    </li>
-                    <li>
-                        <p class="iBox">
-                            <i class="fa fa-shopping-bag"></i>
-                        </p>
-                        <span>我的收藏</span>
-                    </li>
-                    <li>
-                        <p class="iBox">
-                            <i class="fa fa-photo"></i>
-                        </p>
-                        <span>我的相册</span>
-                    </li>
-                    <li>
-                        <p class="iBox">
-                            <i class="fa fa-file"></i>
-                        </p>
-                        <span>我的文件</span>
-                    </li>
-                    <li>
-                        <p class="iBox">
-                            <i class="fa fa-wifi"></i>
-                        </p>
-                        <span>免流量特权</span>
-                    </li>
+                    <!--<li>-->
+                        <!--<p class="iBox">-->
+                            <!--<i class="fa fa-diamond"></i>-->
+                        <!--</p>-->
+                        <!--<span>我的超级会员</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<p class="iBox">-->
+                            <!--<i class="fa fa-jpy"></i>-->
+                        <!--</p>-->
+                        <!--<span>QQ钱包</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<p class="iBox">-->
+                            <!--<i class="fa fa-paint-brush"></i>-->
+                        <!--</p>-->
+                        <!--<span>个性装扮</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<p class="iBox">-->
+                            <!--<i class="fa fa-shopping-bag"></i>-->
+                        <!--</p>-->
+                        <!--<span>我的收藏</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<p class="iBox">-->
+                            <!--<i class="fa fa-photo"></i>-->
+                        <!--</p>-->
+                        <!--<span>我的相册</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<p class="iBox">-->
+                            <!--<i class="fa fa-file"></i>-->
+                        <!--</p>-->
+                        <!--<span>我的文件</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<p class="iBox">-->
+                            <!--<i class="fa fa-wifi"></i>-->
+                        <!--</p>-->
+                        <!--<span>免流量特权</span>-->
+                    <!--</li>-->
                 </ul>
             </div>
         </div>
@@ -121,6 +127,10 @@
             close() {
                 this.$store.commit('SET_USER_PANEL', false);
                 this.$store.commit('SET_MASK', false);
+            },
+            logout(){
+                localStorage.removeItem('_userInfo');
+                this.$router.push('/welcome')
             }
         }
     }
@@ -142,11 +152,9 @@
             top: 0;
             z-index: 1001;
             background: #fff;
-
             .menu {
                 padding-left: .22rem;
                 padding-top: .3rem;
-
                 ul {
                     display: flex;
                     flex-direction: column;
@@ -155,8 +163,12 @@
                     li:not(:first-child) {
                         margin-top: .24rem;
                     }
+                    .signOut{
+                        span:active{
+                            color:red;
+                        }
+                    }
                 }
-
                 p.iBox {
                     display: inline-block;
                     text-align: center;

@@ -3,15 +3,15 @@
         <img :src="userInfo.userHead" class="userHead" @click="showUserPanel">
         <p class="searchBar" @click="$router.push('/search')">
             <i class="fa fa-search"></i>
-            <span>{{placeholder}}</span>
+            <span>搜索</span>
         </p>
-        <div class="addBox" v-if="pageType=='message'">
-            +
-        </div>
-        <div class="addFriend" v-else-if="pageType=='friend'">
-            添加
-        </div>
-        <div class="fa fa-th-large" v-else-if="pageType=='dynamic'"></div>
+        <!--<div class="addBox" v-if="pageType=='message'">-->
+            <!--+-->
+        <!--</div>-->
+        <!--<div class="addFriend" v-else-if="pageType=='friend'">-->
+            <!--添加-->
+        <!--</div>-->
+        <!--<div class="fa fa-th-large" v-else-if="pageType=='dynamic'"></div>-->
     </div>
 </template>
 
@@ -51,7 +51,7 @@
         }
         .searchBar {
             height: .3rem;
-            width: calc(100% - 1rem);
+            width: calc(100% - .6rem);
             border-radius: .03rem;
             background: linear-gradient(to right, #4884f2 0%, #4aa7f4 100%);
             margin-left: .12rem;

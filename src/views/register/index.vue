@@ -73,10 +73,10 @@
                         active: false
                     }
                 },
-                userName: '454979849',
-                password: '123456',
-                passwordConfirm: '123456',
-                nickName: '大约在冬季',
+                userName: '',
+                password: '',
+                passwordConfirm: '',
+                nickName: '',
             }
         },
         methods: {

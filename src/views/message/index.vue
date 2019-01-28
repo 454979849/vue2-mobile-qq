@@ -1,6 +1,6 @@
 <template>
     <div class="message">
-        <mHead pageType="message" placeholder="搜索"></mHead>
+        <mHead></mHead>
         <mt-loadmore class="messageListWrapper" :top-method="loadTop" ref="loadmore">
             <ul class="messageList">
                 <li class="li" v-for="(item,index) in messageList" @click="openDialog(item)">

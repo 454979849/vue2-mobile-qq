@@ -41,7 +41,7 @@ Vue.directive('limit', {
         el.oninput = function () {
             var value = vnode.child.currentValue;
             var length = binding.value.length;
-            if(value.length>12){
+            if (value.length > 12) {
                 vnode.child.currentValue = value.slice(0, length);
             }
         }
@@ -53,6 +53,16 @@ if ('addEventListener' in document) {
         FastClick.attach(document.body);
     }, false);
 }
+
+router.beforeEach((to, from, next) => {
+    console.log(to);
+    let userInfo = localStorage.getItem('_userInfo');
+    if (userInfo || to.path == '/welcome' || to.path=='/login') {
+        next();
+    } else {
+        next('/welcome')
+    }
+})
 
 Vue.config.productionTip = false
 

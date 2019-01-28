@@ -1,5 +1,6 @@
 <template>
     <div class="welcome">
+        <img src="../../assets/welcomeBg.png" style="width:40%;margin-top:40%;">
         <div id="btns">
             <mt-button type="default" style="background-color:#CCCBCC" @click="$router.push('/login')">登录</mt-button>
             <mt-button type="primary" @click="$router.push('/register')">新用户</mt-button>
@@ -20,8 +21,7 @@
     .welcome {
         width: 100%;
         height: 100%;
-        background: url(../../assets/welcomeBg.png) 0 0 no-repeat;
-        background-size: contain;
+        text-align:center;
         #btns {
             position: absolute;
             bottom:.7rem;

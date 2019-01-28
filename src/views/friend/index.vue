@@ -1,19 +1,19 @@
 <template>
     <div class="friendPage">
 
-        <mHead pageType="friend" placeholder="搜索"></mHead>
+        <mHead></mHead>
         <mt-loadmore class="friend" id="friends" :top-method="loadTop" ref="loadmore">
             <div class="info">
                 <div>
-                    <span>坦白说</span>
-                    <p>原来我的好友都是如此优秀</p>
+                    <span>朋友</span>
+                    <p>要常联系</p>
                 </div>
             </div>
 
             <mt-navbar v-model="selected">
-                <mt-tab-item id="tab1">好友</mt-tab-item>
-                <mt-tab-item id="tab2">群聊</mt-tab-item>
-                <mt-tab-item id="tab3">公众号</mt-tab-item>
+                <mt-tab-item id="tab1">我的好友</mt-tab-item>
+                <mt-tab-item id="tab2">我的视频</mt-tab-item>
+                <!--<mt-tab-item id="tab3">公众号</mt-tab-item>-->
             </mt-navbar>
 
             <!-- tab-container -->
@@ -22,11 +22,11 @@
                     <FriendList :friendList="friendList"></FriendList>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="tab2">
-                    <GroupList></GroupList>
+                    <MyVideo></MyVideo>
                 </mt-tab-container-item>
-                <mt-tab-container-item id="tab3">
-                    <PublicList :publicList="publicList"></PublicList>
-                </mt-tab-container-item>
+                <!--<mt-tab-container-item id="tab3">-->
+                    <!--<PublicList :publicList="publicList"></PublicList>-->
+                <!--</mt-tab-container-item>-->
             </mt-tab-container>
 
         </mt-loadmore>
@@ -38,8 +38,9 @@
     import Vue from 'vue'
     import mHead from '@/components/head'
     import FriendList from '@/components/friendList'
-    import GroupList from '@/components/groupList'
-    import PublicList from '@/components/publicList'
+    // import GroupList from '@/components/groupList'
+    // import PublicList from '@/components/publicList'
+    import MyVideo from '@/components/myVideo'
     import {mapGetters} from 'vuex'
 
     import {Toast, Navbar, TabItem, Loadmore} from 'mint-ui';
@@ -52,7 +53,7 @@
 
     export default {
         name: "friend",
-        components: {mHead, FriendList, GroupList, PublicList},
+        components: {mHead, FriendList, MyVideo},
         //进入路由前执行的方法，因为该组件被缓存，于是生命周期不会重走，于是在这里设置footer的高亮
         beforeRouteEnter(to, from, next) {
             next(vm => {
@@ -183,7 +184,7 @@
         .info {
             border: .01rem solid #eee;
             height: .9rem;
-            margin: .1rem .12rem;
+            margin: .1rem .08rem;
             background: #fff;
             border-radius: .04rem;
             padding-left: .1rem;

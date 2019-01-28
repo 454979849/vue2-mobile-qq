@@ -9,10 +9,10 @@
                 <img :src="footIndex==1?imgActive2:img2" >
                 <p :class="{active:footIndex==1}">联系人</p>
             </li>
-            <li @click="pageChange(2)">
-                <img :src="footIndex==2?imgActive3:img3" >
-                <p :class="{active:footIndex==2}">动态</p>
-            </li>
+            <!--<li @click="pageChange(2)">-->
+                <!--<img :src="footIndex==2?imgActive3:img3" >-->
+                <!--<p :class="{active:footIndex==2}">动态</p>-->
+            <!--</li>-->
         </ul>
     </div>
 </template>
