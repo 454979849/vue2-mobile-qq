@@ -61,7 +61,9 @@
 <style scoped lang="scss">
     .login {
         padding: .3rem;
-
+        width:100%;
+        height:100%;
+        background-color:#fff;
         .form {
             margin-top: .48rem;
 

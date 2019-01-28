@@ -1,7 +1,6 @@
 <template>
-
     <div id="app" :class="{move:showUserPanel}">
-        <div id="userPanel">
+        <div id="userPanel"  v-show="showMask">
             <div class="imgBox">
                 <img :src="userInfo.userBg" class="userBg" ref="userBg">
                 <div class="content">
@@ -12,13 +11,6 @@
                     <div class="userInfo">
                         <img class="vip"
                              :src="userInfo.isVip==2?'http://120.79.192.193/assets/svip.png':userInfo.isVip==1?'http://120.79.192.193/assets/vip.png':''">
-                        <!--<img src="http://120.79.192.193/assets/user/huangguan.png">-->
-                        <!--<img src="http://120.79.192.193/assets/user/taiyang.png">-->
-                        <!--<img src="http://120.79.192.193/assets/user/taiyang.png">-->
-                        <!--<img src="http://120.79.192.193/assets/user/taiyang.png">-->
-                        <!--<img src="http://120.79.192.193/assets/user/xingxing.png">-->
-                        <!--<img src="http://120.79.192.193/assets/user/xingxing.png">-->
-                        <!--<img src="http://120.79.192.193/assets/user/xingxing.png">-->
                     </div>
                 </div>
             </div>
@@ -30,64 +22,21 @@
                         </p>
                         <span @click="logout">退出登录</span>
                     </li>
-                    <!--<li>-->
-                        <!--<p class="iBox">-->
-                            <!--<i class="fa fa-diamond"></i>-->
-                        <!--</p>-->
-                        <!--<span>我的超级会员</span>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<p class="iBox">-->
-                            <!--<i class="fa fa-jpy"></i>-->
-                        <!--</p>-->
-                        <!--<span>QQ钱包</span>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<p class="iBox">-->
-                            <!--<i class="fa fa-paint-brush"></i>-->
-                        <!--</p>-->
-                        <!--<span>个性装扮</span>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<p class="iBox">-->
-                            <!--<i class="fa fa-shopping-bag"></i>-->
-                        <!--</p>-->
-                        <!--<span>我的收藏</span>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<p class="iBox">-->
-                            <!--<i class="fa fa-photo"></i>-->
-                        <!--</p>-->
-                        <!--<span>我的相册</span>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<p class="iBox">-->
-                            <!--<i class="fa fa-file"></i>-->
-                        <!--</p>-->
-                        <!--<span>我的文件</span>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<p class="iBox">-->
-                            <!--<i class="fa fa-wifi"></i>-->
-                        <!--</p>-->
-                        <!--<span>免流量特权</span>-->
-                    <!--</li>-->
                 </ul>
             </div>
         </div>
-
         <div id="mask" v-show="showMask" @click="close"></div>
         <keep-alive :include="['friend','search']">
             <router-view v-transition/>
         </keep-alive>
         <Foot v-if="showFoot"></Foot>
     </div>
-
 </template>
 
 <script>
     import Foot from '@/components/foot'
     import {mapGetters} from 'vuex'
+    import {MessageBox} from 'mint-ui'
 
     export default {
         components: {Foot},
@@ -129,8 +78,12 @@
                 this.$store.commit('SET_MASK', false);
             },
             logout(){
-                localStorage.removeItem('_userInfo');
-                this.$router.push('/welcome')
+                MessageBox.confirm('确定要退出登录吗?', '提示').then(()=>{
+                    localStorage.removeItem('_userInfo');
+                    this.$store.commit('SET_USER_PANEL',false);
+                    this.$store.commit('SET_MASK',false);
+                    this.$router.push('/welcome')
+                })
             }
         }
     }
