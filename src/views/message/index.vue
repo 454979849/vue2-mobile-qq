@@ -10,7 +10,7 @@
                     <div class="detail right">
                         <span>{{item[0].nickName}}</span>
                         <p>{{item[item.length-1].content}}</p>
-                        <div class="unReadNum">
+                        <div class="unReadNum" v-show="getUnReadNum(item)>0">
                             {{getUnReadNum(item)}}
                         </div>
                     </div>
@@ -35,7 +35,7 @@
         name: "message",
         components: {mHead},
         computed: {
-            ...mapGetters(['userInfo','messageList'])
+            ...mapGetters(['userInfo', 'messageList'])
         },
         created() {
             this.$store.commit('SHOW_FOOT_CHANGE', true);
@@ -54,8 +54,8 @@
                 })
             },
             async renderMessage(callback) {
-                await this.$store.dispatch('GET_MESSAGE',this.userInfo.id);
-                if(callback){
+                await this.$store.dispatch('GET_MESSAGE', this.userInfo.id);
+                if (callback) {
                     callback();
                 }
             },
@@ -63,9 +63,9 @@
                 let toId = arr[0].fromId == userInfo.id ? arr[0].toId : arr[0].fromId;
                 this.$router.push(`/dialog/${toId}`)
             },
-            getUnReadNum(item){
-                return item.filter(v=>{
-                    return v.isRead==0;
+            getUnReadNum(item) {
+                return item.filter(v => {
+                    return v.toId==this.userInfo.id && v.isRead == 0;
                 }).length;
             }
         },
@@ -102,6 +102,7 @@
 
             li {
                 height: .64rem;
+
                 .imgBox {
                     width: 18%;
                     height: 100%;
@@ -122,7 +123,8 @@
                     padding-top: .1rem;
                     padding-bottom: .12rem;
                     justify-content: space-around;
-                    position:relative;
+                    position: relative;
+
                     span {
                         font-size: .16rem;
                     }
@@ -131,17 +133,18 @@
                         color: #666;
                         font-size: .13rem;
                     }
-                    .unReadNum{
-                        position:absolute;
-                        right:.15rem;
-                        width:.24rem;
-                        height:.24rem;
-                        line-height:.24rem;
-                        text-align:center;
-                        font-size:.14rem;
-                        border-radius:50%;
-                        color:#fff;
-                        background:red;
+
+                    .unReadNum {
+                        position: absolute;
+                        right: .15rem;
+                        width: .24rem;
+                        height: .24rem;
+                        line-height: .24rem;
+                        text-align: center;
+                        font-size: .14rem;
+                        border-radius: 50%;
+                        color: #fff;
+                        background: red;
                     }
                 }
             }

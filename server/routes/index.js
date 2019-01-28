@@ -9,7 +9,7 @@ const login = require('../controllers/login');
 const register = require('../controllers/register');
 const message = require('../controllers/message');
 const friend = require('../controllers/friend');
-const dialog = require('../controllers/dialog')
+const {dialog, setIsRead} = require('../controllers/dialog');
 
 
 router.prefix(`/${baseApi}`);
@@ -18,7 +18,8 @@ router.post('/login', login)
     .post('/register', register)
     .get('/message', message)
     .get('/friend', friend)
-    .post('/dialog', dialog);
+    .post('/dialog', dialog)
+    .post('/setIsRead', setIsRead);
 
 
 module.exports = router;

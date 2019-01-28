@@ -53,13 +53,6 @@
                 pwd: '123456'
             }
         },
-        watch: {
-            qq(val) {
-                if (val == '') {
-                    this.pwd = '';
-                }
-            }
-        },
         created() {
             this.$store.commit('SHOW_FOOT_CHANGE', false);
         }

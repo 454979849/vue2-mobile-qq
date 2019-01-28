@@ -2,16 +2,23 @@ const {query} = require('../utils/db');
 
 let getMessage = function (userId) {
     let _sql = 'SELECT content,fromId,toId,createTime,isRead,userHead,nickName FROM message,user WHERE (message.fromId=? and user.id=message.toId) or (message.toId=? and user.id=message.fromId);'
-    return query(_sql, [userId,userId])
+    return query(_sql, [userId, userId])
 }
 
 let sendMessage = function (content, fromId, toId, createTime, isRead) {
     const data = [content, fromId, toId, createTime, isRead];
     let _sql = ' INSERT INTO message(content,fromId,toId,createTime,isRead) VALUES(?,?,?,?,?);';
-    return query(_sql,data);
+    return query(_sql, data);
 };
+
+let setIsRead = function (fromId, toId) {
+    const data = [toId, fromId];
+    let _sql = 'UPDATE message SET isRead=1 WHERE fromId=? AND toId=?';
+    return query(_sql, data);
+}
 
 module.exports = {
     getMessage,
-    sendMessage
+    sendMessage,
+    setIsRead
 }
