@@ -9,7 +9,7 @@
                     </div>
                     <div class="detail right">
                         <span>{{item[0].nickName}}</span>
-                        <p>{{item[item.length-1].content}}</p>
+                        <p class="lastSend">{{item[item.length-1].content}}</p>
                         <div class="unReadNum" v-show="getUnReadNum(item)>0">
                             {{getUnReadNum(item)}}
                         </div>
@@ -132,6 +132,10 @@
                     p {
                         color: #666;
                         font-size: .13rem;
+                        width:calc(100% - 0.6rem);
+                        overflow:hidden;
+                        text-overflow:ellipsis;
+                        white-space: nowrap;
                     }
 
                     .unReadNum {

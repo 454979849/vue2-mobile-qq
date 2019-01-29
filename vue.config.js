@@ -1,7 +1,7 @@
 module.exports={
     // 基本路径
     baseUrl: process.env.NODE_ENV === 'production'
-        ? '/'
+        ? ''
         : '/',
     // 输出文件目录
     outputDir: 'dist', // 默认dist
