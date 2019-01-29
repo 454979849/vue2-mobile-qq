@@ -2,7 +2,7 @@
     <div class="friendPage">
 
         <mHead></mHead>
-        <mt-loadmore class="friend" id="friends" :top-method="loadTop" ref="loadmore">
+        <mt-loadmore class="friend" id="friends" ref="loadmore">
             <div class="info">
                 <div>
                     <span>提示</span>
@@ -75,7 +75,7 @@
                         duration: 1000
                     });
                     this.$refs.loadmore.onTopLoaded();
-                }, 1000)
+                })
             },
             renderFriend(callback) {
                 getFriend(this.userInfo.id).then(res => {
@@ -182,7 +182,7 @@
             }
 
             p {
-                font-size: .1rem;
+                font-size: .12rem;
                 color: #666;
                 margin-top: .08rem;
                 line-height:1.5;

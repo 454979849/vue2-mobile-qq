@@ -44,6 +44,11 @@
         padding: 0 .1rem;
         display: flex;
         align-items: center;
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        z-index:500;
         img.userHead {
             height: .38rem;
             border-radius: 50%;

@@ -23,7 +23,7 @@
             </ul>
         </div>
         <div class="writeArea">
-            <input type="text" v-model="msg" @keydown.enter="sendMessage">
+            <input type="text" placeholder="请输入消息" v-model="msg" @keydown.enter="sendMessage">
         </div>
     </div>
 </template>
@@ -131,6 +131,11 @@
         background: #ecedf0;
 
         div.writeArea {
+            position:fixed;
+            z-index:500;
+            bottom:0;
+            left:0;
+            right:0;
             height: .6rem;
             display: flex;
             justify-content: center;
@@ -148,8 +153,15 @@
         }
 
         .dialogWrap {
-            height: calc(100% - 1.2rem);
-            overflow:auto;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+            width:100%;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: .6rem;
+            height:calc(100% - 1.2rem);
+            z-index:200;
             & > ul {
                 padding: 0 0.1rem;
 
@@ -190,10 +202,13 @@
 
         .currentFriend {
             height: .6rem;
-            background: rgba(255, 255, 255, .2);
+            background: #fefefe;
             text-align: center;
-            position: relative;
-
+            position: fixed;
+            top:0;
+            left:0;
+            width:100%;
+            z-index:500;
             i {
                 @include extend-click();
                 font-size: .34rem;

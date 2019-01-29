@@ -12,7 +12,7 @@
         name: "myAudio",
         data() {
             return {
-                playing: true,
+                playing: false,
             }
         },
         methods: {

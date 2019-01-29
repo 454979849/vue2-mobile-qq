@@ -1,7 +1,7 @@
 <template>
     <div class="message">
         <mHead></mHead>
-        <mt-loadmore class="messageListWrapper" :top-method="loadTop" ref="loadmore">
+        <mt-loadmore class="messageListWrapper" ref="loadmore">
             <ul class="messageList">
                 <li class="li" v-for="(item,index) in messageList" @click="openDialog(item)">
                     <div class="imgBox left">
@@ -83,26 +83,23 @@
 
 
     .message {
-        width: 100%;
-        height: 100%;
+        /*width: 100%;*/
+        /*height: 100%;*/
     }
-
-
     .messageListWrapper {
-        overflow-y: auto;
+        overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
-        position: absolute;
+        width:100%;
+        position: fixed;
         left: 0;
         right: 0;
         top: .6rem;
         bottom: .54rem;
-
+        z-index:200;
         ul.messageList {
             width: 100%;
-
             li {
                 height: .64rem;
-
                 .imgBox {
                     width: 18%;
                     height: 100%;
