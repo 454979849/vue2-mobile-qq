@@ -5,15 +5,14 @@
         <mt-loadmore class="friend" id="friends" :top-method="loadTop" ref="loadmore">
             <div class="info">
                 <div>
-                    <span>朋友</span>
-                    <p>要常联系</p>
+                    <span>提示</span>
+                    <p>所有内容和图片全部来自数据库，所有账号的密码都是123456，主账号111111拥有所有好友，基于socket，可以俩俩互聊。</p>
                 </div>
             </div>
 
             <mt-navbar v-model="selected">
                 <mt-tab-item id="tab1">我的好友</mt-tab-item>
-                <mt-tab-item id="tab2">我的视频</mt-tab-item>
-                <!--<mt-tab-item id="tab3">公众号</mt-tab-item>-->
+                <mt-tab-item id="tab2">我的音乐</mt-tab-item>
             </mt-navbar>
 
             <!-- tab-container -->
@@ -22,11 +21,8 @@
                     <FriendList :friendList="friendList"></FriendList>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="tab2">
-                    <MyVideo></MyVideo>
+                    <MyAudio></MyAudio>
                 </mt-tab-container-item>
-                <!--<mt-tab-container-item id="tab3">-->
-                    <!--<PublicList :publicList="publicList"></PublicList>-->
-                <!--</mt-tab-container-item>-->
             </mt-tab-container>
 
         </mt-loadmore>
@@ -38,9 +34,7 @@
     import Vue from 'vue'
     import mHead from '@/components/head'
     import FriendList from '@/components/friendList'
-    // import GroupList from '@/components/groupList'
-    // import PublicList from '@/components/publicList'
-    import MyVideo from '@/components/myVideo'
+    import MyAudio from '@/components/myAudio'
     import {mapGetters} from 'vuex'
 
     import {Toast, Navbar, TabItem, Loadmore} from 'mint-ui';
@@ -53,7 +47,7 @@
 
     export default {
         name: "friend",
-        components: {mHead, FriendList, MyVideo},
+        components: {mHead, FriendList, MyAudio},
         //进入路由前执行的方法，因为该组件被缓存，于是生命周期不会重走，于是在这里设置footer的高亮
         beforeRouteEnter(to, from, next) {
             next(vm => {
@@ -65,42 +59,8 @@
         },
         created() {
             this.$store.commit('SHOW_FOOT_CHANGE', true);
-            getFriend(this.userInfo.id).then(res => {
-                res = res.data.friendList;
-                let friendList = [], groupNames = [];
-                this.$store.commit('SET_FRIEND_LIST', res);
-                sessionStorage.setItem('_friendList', JSON.stringify(res));
-                res.forEach(item => {
-                    let gName=item.idA==this.userInfo.id?item.inA:item.inB;
-                    let id=item.idA==this.userInfo.id?item.idB:item.idA;
-                    if (groupNames.indexOf(gName) == -1) {
-                        groupNames.push(gName);
-                        friendList.push({
-                            groupName: gName,
-                            subList: [{
-                                imgSrc: item.userHead,
-                                nickName: item.nickName,
-                                autograph: item.say,
-                                vip: item.isVip,
-                                id
-                            }]
-                        })
-                    } else {
-                        friendList.forEach((v, i) => {
-                            if (v.groupName == gName) {
-                                friendList[i].subList.push({
-                                    imgSrc: item.userHead,
-                                    nickName: item.nickName,
-                                    autograph: item.say,
-                                    vip: item.isVip,
-                                    id
-                                })
-                            }
-                        })
-                    }
-                })
-                this.friendList = friendList;
-            })
+            this.$store.dispatch('GET_MESSAGE', this.userInfo.id);
+            this.renderFriend();
         },
         methods: {
             setFootIndex() {
@@ -108,8 +68,7 @@
                 this.$store.commit('SET_FOOT_INDEX', 1);
             },
             loadTop() {
-                //定时器模拟异步请求效果
-                setTimeout(() => {
+                this.renderFriend(() => {
                     Toast({
                         message: '更新成功',
                         position: 'center',
@@ -117,28 +76,53 @@
                     });
                     this.$refs.loadmore.onTopLoaded();
                 }, 1000)
+            },
+            renderFriend(callback) {
+                getFriend(this.userInfo.id).then(res => {
+                    res = res.data.friendList;
+                    let friendList = [], groupNames = [];
+                    this.$store.commit('SET_FRIEND_LIST', res);
+                    sessionStorage.setItem('_friendList', JSON.stringify(res));
+                    res.forEach(item => {
+                        let gName = item.idA == this.userInfo.id ? item.inA : item.inB;
+                        let id = item.idA == this.userInfo.id ? item.idB : item.idA;
+                        if (groupNames.indexOf(gName) == -1) {
+                            groupNames.push(gName);
+                            friendList.push({
+                                groupName: gName,
+                                subList: [{
+                                    imgSrc: item.userHead,
+                                    nickName: item.nickName,
+                                    autograph: item.say,
+                                    vip: item.isVip,
+                                    id
+                                }]
+                            })
+                        } else {
+                            friendList.forEach((v, i) => {
+                                if (v.groupName == gName) {
+                                    friendList[i].subList.push({
+                                        imgSrc: item.userHead,
+                                        nickName: item.nickName,
+                                        autograph: item.say,
+                                        vip: item.isVip,
+                                        id
+                                    })
+                                }
+                            })
+                        }
+                    })
+                    this.friendList = friendList;
+                    if(callback){
+                        callback();
+                    }
+                })
             }
         },
         data() {
             return {
                 selected: 'tab1',
-                friendList: [],
-                publicList: [{
-                    letter: 'D',
-                    subList: [{
-                        imgSrc: 'http://120.79.192.193/assets/publicImgs/1.jpeg',
-                        name: '道聚城'
-                    }]
-                }, {
-                    letter: 'H',
-                    subList: [{
-                        imgSrc: 'http://120.79.192.193/assets/publicImgs/2.jpeg',
-                        name: '好友动态'
-                    }, {
-                        imgSrc: 'http://120.79.192.193/assets/publicImgs/3.jpeg',
-                        name: '黑口袋'
-                    }]
-                }]
+                friendList: []
             }
         }
     }
@@ -188,6 +172,7 @@
             background: #fff;
             border-radius: .04rem;
             padding-left: .1rem;
+            padding-right: .1rem;
             display: flex;
             align-items: center;
 
@@ -200,6 +185,7 @@
                 font-size: .1rem;
                 color: #666;
                 margin-top: .08rem;
+                line-height:1.5;
             }
         }
     }

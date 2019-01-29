@@ -60,12 +60,12 @@
                 }
             },
             openDialog(arr) {
-                let toId = arr[0].fromId == userInfo.id ? arr[0].toId : arr[0].fromId;
+                let toId = arr[0].fromId == this.userInfo.id ? arr[0].toId : arr[0].fromId;
                 this.$router.push(`/dialog/${toId}`)
             },
             getUnReadNum(item) {
                 return item.filter(v => {
-                    return v.toId==this.userInfo.id && v.isRead == 0;
+                    return v.toId == this.userInfo.id && v.isRead == 0;
                 }).length;
             }
         },

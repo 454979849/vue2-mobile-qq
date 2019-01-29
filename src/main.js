@@ -55,9 +55,8 @@ if ('addEventListener' in document) {
 }
 
 router.beforeEach((to, from, next) => {
-    console.log(to);
     let userInfo = localStorage.getItem('_userInfo');
-    if (userInfo || to.path == '/welcome' || to.path=='/login') {
+    if (userInfo || to.path == '/welcome' || to.path=='/login' || to.path=='/register') {
         next();
     } else {
         next('/welcome')

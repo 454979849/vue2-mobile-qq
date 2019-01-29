@@ -30,6 +30,9 @@
             <router-view v-transition/>
         </keep-alive>
         <Foot v-if="showFoot"></Foot>
+        <audio controls hidden id="audio" ref="audio" autoplay loop src="http://120.79.192.193/assets/cuimian.mp3">
+            您的浏览器不支持audio标签
+        </audio>
     </div>
 </template>
 

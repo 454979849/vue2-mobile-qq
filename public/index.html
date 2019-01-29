@@ -9,13 +9,13 @@
 </head>
 <body>
 <div id="app"></div>
-<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script src="http://192.168.1.62:3000/socket.io/socket.io.js"></script>
 <script>
     var width = document.documentElement.clientWidth || document.body.clientWidth;
     width > 750 && (width = 440);
     document.getElementsByTagName('html')[0].style.fontSize = width / 4.14 + 'px';
 
-    const socket = io('http://localhost:3000');
+    const socket = io('http://192.168.1.62:3000');
     const userInfo = JSON.parse(localStorage.getItem("_userInfo"))
     if (userInfo) {
         socket.emit('update', userInfo.id);

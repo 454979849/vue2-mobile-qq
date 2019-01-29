@@ -27,7 +27,6 @@ const friend = {
                         obj[item.toId] = [];
                     }
                 })
-
                 res.forEach(item => {
                     if (item.fromId in obj) {
                         obj[item.fromId].push({...item})
@@ -44,7 +43,6 @@ const friend = {
                 }
                 commit('SET_MESSAGE_LIST', messageList);
                 sessionStorage.setItem('_messageList', JSON.stringify(messageList))
-                Promise.resolve(messageList)
             })
         }
     }

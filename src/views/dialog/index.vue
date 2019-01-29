@@ -23,7 +23,7 @@
             </ul>
         </div>
         <div class="writeArea">
-            <input v-model="msg" @keydown.enter="sendMessage">
+            <input type="text" v-model="msg" @keydown.enter="sendMessage">
         </div>
     </div>
 </template>
@@ -32,7 +32,7 @@
     import {mapGetters} from 'vuex'
     import {sendMessage, setIsRead} from '@/api/dialog.js'
     import {getMessage} from '@/api/message.js'
-    import {Toast} from 'mint-ui'
+    import {Toast,MessageBox} from 'mint-ui'
 
     export default {
         name: "currentDialog",
@@ -70,14 +70,21 @@
             }
             setIsRead(this.userInfo.id, this.$route.params.toId).then(res => {
                 res = res.data;
-                console.log(res);
                 if(res.code=='200'){
-
+                    console.log('消息已读')
                 }
             })
         },
         mounted() {
-            this.$refs.dialogWrap.scrollTop = 100000000 + 'px'
+            this.$refs.dialogWrap.scrollTo(0,100000);
+            socket.on('msgComming',()=>{
+                setIsRead(this.userInfo.id, this.$route.params.toId).then(res => {
+                    res = res.data;
+                    if(res.code=='200'){
+                        console.log('消息已读')
+                    }
+                })
+            })
         },
         methods: {
             async sendMessage() {
@@ -89,18 +96,28 @@
                     });
                 } else {
                     let createTime = new Date().getTime();
+                    console.log(this.msg, this.userInfo.id, Number(this.$route.params.toId), createTime, 0);
                     let res = await sendMessage(this.msg, this.userInfo.id, Number(this.$route.params.toId), createTime, 0)
                     res = res.data;
                     if (res.code == '200') {
                         this.msg = '';
                         this.renderMessage();
                         socket.emit('sendMessage', this.$route.params.toId);
+                    }else{
+                        MessageBox.alert('发送消息失败，请检查网络!', '提示');
                     }
                 }
             },
             renderMessage() {
-                this.$store.dispatch('GET_MESSAGE', this.userInfo.id);
+                this.$store.dispatch('GET_MESSAGE', this.userInfo.id)
             },
+        },
+        watch:{
+            messageList(){
+                this.$nextTick(()=>{
+                    this.$refs.dialogWrap.scrollTo(0,100000)
+                })
+            }
         }
     }
 </script>
@@ -132,7 +149,7 @@
 
         .dialogWrap {
             height: calc(100% - 1.2rem);
-
+            overflow:auto;
             & > ul {
                 padding: 0 0.1rem;
 

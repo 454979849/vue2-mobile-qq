@@ -4,7 +4,7 @@
             <div class="groupName" @click="openGroup(index)">
                 <div class="l">
                     <p class="iconBox">
-                        <i class="fa fa-angle-right" :class="{active:selectedGroupIndex==index}"></i>
+                        <i class="fa fa-angle-right" :class="{active:openStatus[index]}"></i>
                     </p>
                     <span>{{item.groupName}}</span>
                 </div>
@@ -12,26 +12,37 @@
                     <span>{{item.subList.length}}</span>/<span>{{item.subList.length}}</span>
                 </div>
             </div>
-            <FriendSubList v-show="selectedGroupIndex==index" :subList="item.subList"></FriendSubList>
+            <FriendSubList v-show="openStatus[index]" :subList="item.subList"></FriendSubList>
         </div>
     </div>
 </template>
 
 <script>
     import FriendSubList from './friendSubList'
+
     export default {
         name: "friendList",
-        components:{FriendSubList},
-        props:['friendList'],
-        data(){
+        components: {FriendSubList},
+        props: ['friendList'],
+        data() {
             return {
-                selectedGroupIndex: 1
+                openStatus: []
             }
         },
-        methods:{
+        methods: {
             openGroup(index) {
-                if (index == this.selectedGroupIndex) this.selectedGroupIndex = -1
-                else this.selectedGroupIndex = index;
+                let bool = this.openStatus[index];
+                let [...arr] = this.openStatus;
+                arr[index] = !bool;
+                this.openStatus = arr;
+            }
+        },
+        watch: {
+            friendList(list) {
+                let arr = new Array(list.length);
+                arr.fill(false);
+                arr[0] = true;
+                this.openStatus = arr;
             }
         }
     }
@@ -49,6 +60,7 @@
                 }
             }
         }
+
         .groupName {
             height: .5rem;
             display: flex;
@@ -56,14 +68,18 @@
             padding-left: .14rem;
             padding-right: .14rem;
             justify-content: space-between;
+
             .l {
                 display: flex;
                 align-items: center;
+
                 .iconBox {
                     width: .28rem;
+
                     i {
                         color: #bbb;
                         font-size: .26rem;
+
                         &.active {
                             transform: rotate(90deg);
                         }
@@ -75,6 +91,7 @@
                     font-size: .16rem;
                 }
             }
+
             .r {
                 color: #888;
                 font-size: .11rem;

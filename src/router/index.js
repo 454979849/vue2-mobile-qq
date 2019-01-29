@@ -13,7 +13,6 @@ export default new Router({
         {path: '/register', component: () => import('@/views/register/index'), name: 'Register'},
         {path: '/message', component: () => import('@/views/message/index'), name: 'Message'},
         {path: '/friend', component: () => import('@/views/friend/index'), name: 'Friend'},
-        // {path: '/dynamic', component: () => import('@/views/dynamic/index'), name: 'Dynamic'},
         {path: '/search', component: () => import('@/views/search/index'), name: 'Search'},
         {path:'/dialog/:toId',component:()=>import('@/views/dialog/index'),name:'Dialog'}
     ]
