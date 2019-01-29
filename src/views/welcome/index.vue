@@ -2,7 +2,7 @@
     <div class="welcome">
         <img src="../../assets/welcomeBg.png" style="width:40%;margin-top:40%;">
         <div id="btns">
-            <mt-button type="default" style="background-color:#CCCBCC" @click="$router.push('/login')">登录</mt-button>
+            <mt-button type="primary" @click="$router.push('/login')">登录</mt-button>
             <mt-button type="primary" @click="$router.push('/register')">新用户</mt-button>
         </div>
     </div>

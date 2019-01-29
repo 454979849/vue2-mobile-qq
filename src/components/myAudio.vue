@@ -1,7 +1,7 @@
 <template>
     <div class="myAudio">
         <div class="music">
-            <img src="../assets/music/music.png" :class="['cd','playing',{'pause':!playing}]">
+            <img src="../assets/music/music.jpeg" :class="['cd','playing',{'pause':!playing}]">
             <img class="btn" src="../assets/music/toplay.png" v-show="!playing" @click="play">
             <img class="btn" src="../assets/music/tostop.png" v-show="playing" @click="stop">
         </div>
