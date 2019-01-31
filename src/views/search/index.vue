@@ -3,7 +3,7 @@
         <div class="searchBox">
             <p class="searchBar" @click="$router.push('/search')">
                 <i class="fa fa-search"></i>
-                <input type="text" ref="keyword" v-model="keyWord">
+                <el-field type="text" ref="keyword" v-model="keyWord"></el-field>
             </p>
             <div class="cancelBox" @click="$router.back()">
                 取消

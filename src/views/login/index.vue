@@ -1,8 +1,8 @@
 <template>
     <div class="login">
         <div class="form">
-            <input type="number" v-model="qq" class="text" placeholder="QQ号">
-            <input type="password" v-model="pwd" maxlength="16" class="text" placeholder="密码">
+            <mt-field type="number" v-model="qq" class="text" placeholder="QQ号" style="border-bottom:1px solid #eee;"></mt-field>
+            <mt-field type="password" v-model="pwd"  :attr="{ maxlength: 16 }" class="text" placeholder="密码" style="border-bottom:1px solid #eee;"></mt-field>
             <mt-button type="primary" style="width:100%;margin-top:.45rem;" @click="login">登录</mt-button>
             <div style="text-align:center;margin-top:.3rem;color:#409eff;font-size:.16rem;">
                 <router-link to="/register" tag="span" >注册</router-link>
@@ -66,11 +66,6 @@
         background-color:#fff;
         .form {
             margin-top: .48rem;
-
-            input {
-                display: block;
-                width: 100%;
-            }
         }
     }
 </style>
