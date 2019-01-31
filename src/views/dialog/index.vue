@@ -23,7 +23,7 @@
             </ul>
         </div>
         <div class="writeArea">
-            <input type="text" placeholder="请输入消息" v-model="msg" @keydown.enter="sendMessage">
+            <input type="text" placeholder="请输入消息，回车发送" v-model="msg" @keydown.enter="sendMessage">
         </div>
     </div>
 </template>
@@ -142,9 +142,8 @@
             align-items: center;
 
             input {
-                width: 94%;
+                width: 100%;
                 height: .44rem;
-                border-radius: .08rem;
                 border: none;
                 outline: none;
                 font-size: .17rem;
