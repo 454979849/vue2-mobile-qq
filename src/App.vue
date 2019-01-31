@@ -92,14 +92,11 @@
     }
 </script>
 <style scoped lang="scss">
-
     #app {
         transition: transform .3s;
-
         &.move {
             transform: translate3d(78%, 0, 0);
         }
-
         #userPanel {
             width: 78%;
             position: absolute;
