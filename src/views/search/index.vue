@@ -1,9 +1,9 @@
 <template>
     <div class="search">
         <div class="searchBox">
-            <p class="searchBar" @click="$router.push('/search')">
+            <p class="searchBar" @click="$router.push('/search')" style="-webkit-user-select:text !important;">
                 <i class="fa fa-search"></i>
-                <el-field type="text" ref="keyword" v-model="keyWord"></el-field>
+                <el-field type="text" ref="keyword" v-model="keyWord" style="-webkit-user-select:text !important;"></el-field>
             </p>
             <div class="cancelBox" @click="$router.back()">
                 取消

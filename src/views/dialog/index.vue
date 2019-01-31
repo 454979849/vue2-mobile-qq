@@ -140,7 +140,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
+            -webkit-user-select:text !important;
             input {
                 width: 100%;
                 height: .44rem;
@@ -148,6 +148,7 @@
                 outline: none;
                 font-size: .17rem;
                 padding-left: .08rem;
+                -webkit-user-select:text !important;
             }
         }
 
