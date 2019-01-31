@@ -1,3 +1,6 @@
+//server端代码已经部署到阿里云服务器上
+// ./config.js为了不暴露远程服务器的用户名和密码，只作代码展示，运行index.js的话请先使用项目中的project.sql文件给本地mysql数据库创建库和表
+
 const Koa = require('koa');
 const bodyParser = require("koa-bodyparser");
 const cors = require("koa2-cors");
