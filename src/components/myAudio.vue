@@ -5,6 +5,7 @@
             <img class="btn" src="../assets/music/toplay.png" v-show="!playing" @click="play">
             <img class="btn" src="../assets/music/tostop.png" v-show="playing" @click="stop">
         </div>
+        <p>点击播放后，网速较慢时可能会延迟播放，请耐心等待...</p>
     </div>
 </template>
 <script>
@@ -40,6 +41,12 @@
     .myAudio {
         padding-top: .2rem;
         padding-bottom:.2rem;
+        &>p{
+            text-align:center;
+            font-size:.12rem;
+            color:#aaa;
+            margin-top:.1rem;
+        }
         .cd {
             &.playing {
                 animation: rotate 20s linear infinite;

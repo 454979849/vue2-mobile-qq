@@ -10,13 +10,13 @@
                 </div>
             </div>
 
-            <mt-navbar v-model="selected">
+            <mt-navbar v-model="selected" style="background-color:#fff;">
                 <mt-tab-item id="tab1">我的好友</mt-tab-item>
                 <mt-tab-item id="tab2">我的音乐</mt-tab-item>
             </mt-navbar>
 
             <!-- tab-container -->
-            <mt-tab-container v-model="selected">
+            <mt-tab-container v-model="selected" style="background-color:#fff;">
                 <mt-tab-container-item id="tab1">
                     <FriendList :friendList="friendList"></FriendList>
                 </mt-tab-container-item>

@@ -131,7 +131,7 @@
         background: #ecedf0;
 
         div.writeArea {
-            position:fixed;
+            position:absolute;
             z-index:500;
             bottom:0;
             left:0;
@@ -156,7 +156,7 @@
             overflow-y: scroll;
             -webkit-overflow-scrolling: touch;
             width:100%;
-            position: fixed;
+            position: absolute;
             left: 0;
             right: 0;
             top: .6rem;
@@ -204,7 +204,7 @@
             height: .6rem;
             background: #fefefe;
             text-align: center;
-            position: fixed;
+            position: absolute;
             top:0;
             left:0;
             width:100%;

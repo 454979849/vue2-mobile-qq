@@ -90,12 +90,13 @@
         overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
         width:100%;
-        position: fixed;
+        position: absolute;
         left: 0;
         right: 0;
         top: .6rem;
         bottom: .54rem;
         z-index:200;
+        background-color:#fff;
         ul.messageList {
             width: 100%;
             li {

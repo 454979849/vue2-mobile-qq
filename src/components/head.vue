@@ -44,7 +44,7 @@
         padding: 0 .1rem;
         display: flex;
         align-items: center;
-        position:fixed;
+        position:absolute;
         top:0;
         left:0;
         width:100%;

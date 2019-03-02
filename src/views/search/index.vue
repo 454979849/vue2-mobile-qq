@@ -3,7 +3,7 @@
         <div class="searchBox">
             <p class="searchBar" @click="$router.push('/search')" style="-webkit-user-select:text !important;">
                 <i class="fa fa-search"></i>
-                <el-field type="text" ref="keyword" v-model="keyWord" style="-webkit-user-select:text !important;"></el-field>
+                <input type="text" ref="keyword" v-model="keyWord" style="-webkit-user-select:text !important;">
             </p>
             <div class="cancelBox" @click="$router.back()">
                 取消
@@ -83,7 +83,7 @@
             margin-right: .1rem;
             padding: .04rem 0;
             border-top: .01rem solid #ddd;
-
+            background-color:#fff;
             li {
                 height: .58rem;
                 display: flex;
@@ -131,7 +131,7 @@
             padding: 0 .1rem;
             display: flex;
             align-items: center;
-
+            background-color:#fff;
             .searchBar {
                 height: .3rem;
                 width: calc(100% - 0.5rem);

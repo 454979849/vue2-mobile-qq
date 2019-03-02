@@ -6,8 +6,10 @@
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   -ms-touch-action: none;
   -webkit-touch-callout: none;
-  user-select: none;
-  text-size-adjust: none;
+  //user-select: none;
+  //text-size-adjust: none;
+  //-webkit-user-select: auto !important;
+  //-moz-user-select: auto !important;
 }
 
 html, body {
