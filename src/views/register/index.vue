@@ -1,5 +1,6 @@
 <template>
     <div class="register">
+        <i class="fa fa-angle-left" @click="$router.back()"></i>
         <div class="form">
             <div class="formItem">
                 <mt-field :class="[{active:rules.userName.active},'inputBox']" ref="userName" v-number
@@ -124,7 +125,7 @@
                                 MessageBox({
                                     title: '注册成功！',
                                     message: `您注册的qq号为${this.userName}，请牢记！`
-                                }).then(()=>{
+                                }).then(() => {
                                     this.$router.push('/login')
                                 });
                             }
@@ -144,6 +145,8 @@
     }
 </style>
 <style scoped lang="scss">
+    @import "../../common/mixin.scss";
+
     .register {
         width: 100%;
         height: 100%;
@@ -151,6 +154,15 @@
         flex-direction: column;
         justify-content: space-around;
         padding: 0 .2rem;
+        position: relative;
+
+        & > i {
+            @include extend-click();
+            font-size: .34rem;
+            position: absolute;
+            left: .12rem;;
+            top: .13rem;
+        }
 
         .formItem {
             margin-top: .2rem;

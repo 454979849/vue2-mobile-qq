@@ -3,7 +3,7 @@
         <div class="searchBox">
             <p class="searchBar" @click="$router.push('/search')" style="-webkit-user-select:text !important;">
                 <i class="fa fa-search"></i>
-                <input type="text" ref="keyword" v-model="keyWord" style="-webkit-user-select:text !important;">
+                <input type="text" ref="keyword" autofocus v-model="keyWord" style="-webkit-user-select:text !important;">
             </p>
             <div class="cancelBox" @click="$router.back()">
                 取消
@@ -127,13 +127,13 @@
         }
 
         .searchBox {
-            height: .6rem;
+            height: .72rem;
             padding: 0 .1rem;
             display: flex;
             align-items: center;
             background-color:#fff;
             .searchBar {
-                height: .3rem;
+                height: .42rem;
                 width: calc(100% - 0.5rem);
                 border-radius: .03rem;
                 background: #f1f1f1;
@@ -145,7 +145,7 @@
 
                 i {
                     color: #aaa;
-                    font-size: .16rem;
+                    font-size: .2rem;
                     margin-right: .05rem;
                 }
 
@@ -155,6 +155,7 @@
                     background: transparent;
                     outline: none;
                     border: none;
+                    font-size:.18rem;
                 }
             }
 
