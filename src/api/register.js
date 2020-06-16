@@ -5,8 +5,8 @@ export function register(obj) {
         userName: obj.userName,
         password: obj.password,
         nickName: obj.nickName,
-        userHead: 'http://120.79.192.193/assets/headImgs/defaultHead.jpg',
-        userBg: 'http://120.79.192.193/assets/user/userBg.png'
+        userHead: 'http://123.57.149.125/assets/headImgs/defaultHead.jpg',
+        userBg: 'http://123.57.149.125/assets/user/userBg.png'
     }
     return request({
         method: 'post',

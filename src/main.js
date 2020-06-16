@@ -6,8 +6,8 @@ import store from './store'
 import FastClick from 'fastclick'
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css';
-import vueg from 'vueg'
-import 'vueg/css/transition-min.css'
+// import vueg from 'vueg'
+// import 'vueg/css/transition-min.css'
 import '@/utils/hide-address'
 import '@/common/index.scss'
 // vueg 转场动画
@@ -15,7 +15,8 @@ const options = {
     forwardAnim: 'fadeInRight',
     duration: 0.2
 }
-Vue.use(Vuex).use(Mint).use(vueg, router, options);
+// Vue.use(Vuex).use(Mint).use(vueg, router, options);
+Vue.use(Vuex).use(Mint);
 
 //自定义指令，v-number 只允许输入数字
 Vue.directive('number', {

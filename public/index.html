@@ -9,13 +9,13 @@
 </head>
 <body>
 <div id="app"></div>
-<script src="http://120.79.192.193:3389/socket.io/socket.io.js"></script>
+<script src="http://123.57.149.125:3389/socket.io/socket.io.js"></script>
 <script>
     var width = document.documentElement.clientWidth || document.body.clientWidth;
     width > 750 && (width = 440);
     document.getElementsByTagName('html')[0].style.fontSize = width / 4.14 + 'px';
 
-    const socket = io('http://120.79.192.193:3389');
+    const socket = io('http://123.57.149.125:3389');
     const userInfo = JSON.parse(localStorage.getItem("_userInfo"))
     if (userInfo) {
         socket.emit('update', userInfo.id);

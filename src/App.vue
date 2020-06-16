@@ -10,7 +10,7 @@
                     </div>
                     <div class="userInfo">
                         <img class="vip"
-                             :src="userInfo.isVip==2?'http://120.79.192.193/assets/svip.png':userInfo.isVip==1?'http://120.79.192.193/assets/vip.png':''">
+                             :src="userInfo.isVip==2?'http://123.57.149.125/assets/svip.png':userInfo.isVip==1?'http://123.57.149.125/assets/vip.png':''">
                     </div>
                 </div>
             </div>
@@ -27,10 +27,11 @@
         </div>
         <div id="mask" v-show="showMask" @click="close"></div>
         <keep-alive :include="['friend','search']">
-            <router-view v-transition/>
+<!--            <router-view v-transition/>-->
+            <router-view />
         </keep-alive>
         <Foot v-if="showFoot"></Foot>
-        <audio controls="controls" loop="loop" hidden id="audio" ref="audio" src="http://120.79.192.193/assets/cuimian.mp3">
+        <audio controls="controls" loop="loop" hidden id="audio" ref="audio" src="http://123.57.149.125/assets/cuimian.mp3">
             您的浏览器不支持audio标签
         </audio>
     </div>

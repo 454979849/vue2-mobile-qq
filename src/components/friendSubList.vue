@@ -25,8 +25,8 @@
         },
         data() {
             return {
-                vipSrc: 'http://120.79.192.193/assets/vip.png',
-                svipSrc: 'http://120.79.192.193/assets/svip.png'
+                vipSrc: 'http://123.57.149.125/assets/vip.png',
+                svipSrc: 'http://123.57.149.125/assets/svip.png'
             }
         },
         methods: {

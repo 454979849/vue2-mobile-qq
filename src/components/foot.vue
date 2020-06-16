@@ -34,10 +34,10 @@
         },
         data(){
             return {
-                img1:'http://120.79.192.193/assets/f1.png',
-                imgActive1:'http://120.79.192.193/assets/f1_active.png',
-                img2:'http://120.79.192.193/assets/f2.png',
-                imgActive2:'http://120.79.192.193/assets/f2_active.png'
+                img1:'http://123.57.149.125/assets/f1.png',
+                imgActive1:'http://123.57.149.125/assets/f1_active.png',
+                img2:'http://123.57.149.125/assets/f2.png',
+                imgActive2:'http://123.57.149.125/assets/f2_active.png'
             }
         }
     }
